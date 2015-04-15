@@ -1,0 +1,9 @@
+Package: org
+Type: Package
+Title: Translate Objects To Org
+Version: 0.0-1
+Date: 2015-03-19
+Author: Enrico Schumann
+Maintainer: Enrico Schumann <es@enricoschumann.net>
+Description: Translate Objects To Org
+License: GPL>=2
