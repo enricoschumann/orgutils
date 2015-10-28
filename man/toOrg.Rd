@@ -1,5 +1,6 @@
 \name{toOrg}
 \alias{toOrg}
+\alias{print.org}
 \title{
   Generate Org-mode Code
 }
@@ -8,6 +9,9 @@
 }
 \usage{
 toOrg(x, ...)
+
+\method{print}{org}(\dots, recursive = FALSE)
+
 }
 \arguments{
   \item{x}{
@@ -22,7 +26,7 @@ toOrg(x, ...)
   
 }
 \value{
-  A character vector with class \code{org}.
+  A character vector of class \code{org}.
 }
 \references{
   Org mode manual

@@ -1,9 +1,10 @@
 Package: org
 Type: Package
-Title: Translate Objects To Org
-Version: 0.0-1
-Date: 2015-03-19
+Title: Helper Functions for Org Files
+Version: 0.0-2
+Date: 2015-04-21
 Author: Enrico Schumann
 Maintainer: Enrico Schumann <es@enricoschumann.net>
-Description: Translate Objects To Org
-License: GPL>=2
+Description: Helper functions for org files.
+License: GPL (>=2)
+Imports: textutils

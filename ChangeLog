@@ -1,0 +1,17 @@
+2015-10-28  Enrico Schumann  <es@enricoschumann.net>
+
+	* NAMESPACE: import 'trim' from package 'textutils'
+
+2015-04-21  Enrico Schumann  <es@enricoschumann.net>
+
+	* DESCRIPTION (Version): Version: 0.0-2
+
+	* man/toOrg.Rd: updated documentation
+
+2015-04-15  Enrico Schumann  <es@enricoschumann.net>
+
+	* DESCRIPTION (Version): Version: 0.0-1
+
+	* R/toOrg.R (readOrg): new function
+	(toOrg): new generic; a method for data.frames exists
+

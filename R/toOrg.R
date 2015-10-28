@@ -1,12 +1,5 @@
-## helper function; may be moved to texttools
-rmspace <- function (s) {
-    s <- gsub("^\\s*", "", s, perl = TRUE)
-    gsub("\\s*$", "", s, perl = TRUE)
-}
-
-toOrg <- function(x, ... ){
+toOrg <- function(x, ... )
     UseMethod("toOrg")
-}
 
 toOrg.data.frame <- function(x, ...) {
     type <- unname(unlist(lapply(x, mode)))
@@ -44,14 +37,19 @@ print.org <- function(x, ...) {
 
 readOrg <-function (file, header = TRUE, 
                      dec = ".", comment.char = "",
-                     encoding = "unknown", ...) {
+                     encoding = "", strip.white = TRUE, ...) {
+    sep <- 0
     if (header) {
         head <- readLines(file, n = 5, encoding = encoding)
         sep <- max(grep("^\\s*\\|-", head, perl = TRUE))
-        headers <- rmspace(strsplit(head[sep - 1], "|",
+        headers <- trim(strsplit(head[sep - 1], "|",
                                     fixed = TRUE)[[1]][-1])
     }
     txt <- read.csv(file, header = FALSE, skip = sep, sep = "|",
-                    stringsAsFactors = FALSE, fileEncoding = encoding)
-    txt[ , c(-1, -length(txt))]
+                    stringsAsFactors = FALSE, fileEncoding = encoding,
+                    strip.white = strip.white, ...)
+    txt <- txt[ , c(-1, -length(txt))]
+    if (header)
+        colnames(txt) <- headers
+    txt
 }
