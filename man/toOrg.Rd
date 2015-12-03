@@ -10,30 +10,28 @@
 \usage{
 toOrg(x, ...)
 
-\method{print}{org}(\dots, \ldots)
+\method{print}{org}(x, \ldots)
 
 }
 \arguments{
   \item{x}{
     an object
-}
+  }
   \item{\dots}{
     other arguments
-}
+  }
 }
 \details{
 
   Transforms an object x into text with Org markup. Useful mostly for
   data.frames.
-
-  
   
 }
 \value{
   A character vector of class \code{org}.
 }
 \references{
-  Org mode manual
+  Org mode manual \url{http://orgmode.org/manual/index.html}
 }
 \author{
   Enrico Schumann
