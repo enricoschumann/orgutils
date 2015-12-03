@@ -1,5 +1,9 @@
 2015-12-03  Enrico Schumann  <es@enricoschumann.net>
 
+	* R/toOrg.R (toOrg.Date): new method
+
+2015-12-03  Enrico Schumann  <es@enricoschumann.net>
+
 	* DESCRIPTION (Version): Version: 0.1-0
 
 	* R/toOrg.R (readOrg): argument 'table.name' is now supported:

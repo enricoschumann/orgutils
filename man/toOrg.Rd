@@ -10,7 +10,7 @@
 \usage{
 toOrg(x, ...)
 
-\method{print}{org}(\dots, recursive = FALSE)
+\method{print}{org}(\dots, \ldots)
 
 }
 \arguments{
@@ -22,7 +22,11 @@ toOrg(x, ...)
 }
 }
 \details{
-  Transforms an object x into text.
+
+  Transforms an object x into text with Org markup. Useful mostly for
+  data.frames.
+
+  
   
 }
 \value{
@@ -34,12 +38,8 @@ toOrg(x, ...)
 \author{
   Enrico Schumann
 }
-%% \note{
-%% %%  ~~further notes~~
-%% }
-%% %% ~Make other sections like Warning with \section{Warning }{....} ~
 \seealso{
-  toLatex
+  \code{\link{toLatex}}
 }
 \examples{
 toOrg(data.frame(a = 1:5))

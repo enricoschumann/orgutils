@@ -30,6 +30,10 @@ toOrg.data.frame <- function(x, ...) {
     res
 }
 
+toOrg.Date <- function(x, ...) {
+    strftime(x, "<%Y-%m-%d %a>")
+}
+
 print.org <- function(x, ...) {
     cat(x, sep = "\n")
     invisible(x)
