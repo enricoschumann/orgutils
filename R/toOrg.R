@@ -36,16 +36,32 @@ print.org <- function(x, ...) {
 }
 
 readOrg <-function (file, header = TRUE, 
-                     dec = ".", comment.char = "",
-                     encoding = "", strip.white = TRUE, ...) {
+                    dec = ".", comment.char = "",
+                    encoding = "", strip.white = TRUE,
+                    table.name = NULL, ...) {
+
+    if (!is.null(table.name)) {
+        txt <- readLines(file)
+        start <- grep(paste0("^#\\+name: ", table.name), txt, ignore.case = TRUE)
+        if (!length(start))
+            stop("table ", sQuote(table.name), " not found")
+        end <- grep("^ *[^|]|^ *$", txt)
+        end <- min(end[end > start]) - 1L
+        start <- start + 1L
+        txt <- txt[start:end]
+        file <- txt
+    }
+
     sep <- 0
     if (header) {
-        head <- readLines(file, n = 5, encoding = encoding)
+        head <- readLines(textConnection(file), n = 5, encoding = encoding)
+        line <- min(grep("^ *\\| [^<]", head))
         sep <- max(grep("^\\s*\\|-", head, perl = TRUE))
-        headers <- trim(strsplit(head[sep - 1], "|",
+        headers <- trim(strsplit(head[line], "|",
                                     fixed = TRUE)[[1]][-1])
     }
-    txt <- read.csv(file, header = FALSE, skip = sep, sep = "|",
+    txt <- read.csv(textConnection(file), header = FALSE,
+                    skip = sep, sep = "|",
                     stringsAsFactors = FALSE, fileEncoding = encoding,
                     strip.white = strip.white, ...)
     txt <- txt[ , c(-1, -length(txt))]
@@ -53,3 +69,5 @@ readOrg <-function (file, header = TRUE,
         colnames(txt) <- headers
     txt
 }
+## file <- "~/projects3/Fund_Replication/funds.org"
+## table.name  <- "allinstruments"

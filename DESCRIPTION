@@ -1,10 +1,13 @@
 Package: org
 Type: Package
 Title: Helper Functions for Org Files
-Version: 0.0-2
-Date: 2015-04-21
+Version: 0.1-0
+Date: 2015-12-02
 Author: Enrico Schumann
 Maintainer: Enrico Schumann <es@enricoschumann.net>
-Description: Helper functions for org files.
+Description: Helper functions for Org files (http://orgmode.org/):
+  a generic function 'toOrg' for transforming R objects in Org
+  markup (most useful for data.frames) and a function to read Org
+  tables into data.frames.
 License: GPL (>=2)
 Imports: textutils

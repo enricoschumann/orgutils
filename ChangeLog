@@ -1,3 +1,11 @@
+2015-12-03  Enrico Schumann  <es@enricoschumann.net>
+
+	* DESCRIPTION (Version): Version: 0.1-0
+
+	* R/toOrg.R (readOrg): argument 'table.name' is now supported:
+	when provided, the function will look for a table that begins with
+	'#+NAME: table.name' in the specified org-file
+
 2015-10-28  Enrico Schumann  <es@enricoschumann.net>
 
 	* NAMESPACE: import 'trim' from package 'textutils'
