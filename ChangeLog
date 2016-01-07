@@ -1,3 +1,10 @@
+2016-01-07  Enrico Schumann  <es@enricoschumann.net>
+
+	* R/toOrg.R (readOrg): stop when 'table.name' is not unique in the
+	org file
+
+	* inst/unitTests/ut_readOrg.R (test.readOrg): added unit tests
+
 2015-12-03  Enrico Schumann  <es@enricoschumann.net>
 
 	* DESCRIPTION (Version): Version: 0.1-1
