@@ -1,12 +1,12 @@
 if (require("RUnit", quietly = TRUE)) {
     localTesting <- TRUE
-    require("org")
+    pkg <- "org"
+    require(pkg)
     if (localTesting)
-        path <- "~/Packages/NMOF/inst/unitTests" else
+        path <- paste0("~/Packages/", pkg, "/inst/unitTests" else
     path <- system.file("unitTests", package = "org")
 
-    myTestSuite <- defineTestSuite("org",
-                                   dirs = path,
+    myTestSuite <- defineTestSuite(pkg, dirs = path,
                                    testFileRegexp = "unitTests.+")
     stopifnot(isValidTestSuite(myTestSuite))
     testResult <- runTestSuite(myTestSuite, verbose = 0L)

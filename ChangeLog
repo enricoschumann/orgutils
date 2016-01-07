@@ -1,5 +1,7 @@
 2016-01-07  Enrico Schumann  <es@enricoschumann.net>
 
+        * DESCRIPTION (Version): 0.1-2
+
 	* R/toOrg.R (readOrg): stop when 'table.name' is not unique in the
 	org file
 
