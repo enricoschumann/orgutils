@@ -31,7 +31,7 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
     logical
 }
   \item{table.name}{
-    character: the name of the table to read
+    character: the name of the table to read (a regular expression)
 }
   \item{\dots}{
     further arguments
@@ -39,10 +39,11 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
 }
 \details{
 
-  When header is \code{TRUE}, readOrg will read the first 5 lines of the
-  file and try to find an org table header. Formating instructions such
-  as \code{<5>} are discarded. Then the function uses
-  \code{\link{read.csv}} to read the remainder of the file.
+  When \code{header} is \code{TRUE}, \code{readOrg} will read the first
+  10 lines of the file (or the table, when \code{table.name} is
+  specified) and try to find an org table header. Formating instructions
+  such as \code{<5>} are discarded. Then the function uses
+  \code{\link{read.csv}} to read the remainder of the file/table.
 
   When \code{table.name} is specified, the function looks for a line that
   starts with \code{#+NAME: <table.name>} and reads the table that
@@ -83,6 +84,5 @@ writeLines(tmp, fname)
 
 require("org")
 readOrg(fname, table.name = "test_table")
-
 }
 }
