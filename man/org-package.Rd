@@ -19,7 +19,7 @@
   Enrico Schumann <es@enricoschumann.net>
 }
 \references{
-  Org mode manual
+  Org mode manual \url{http://orgmode.org/}
 }
 \keyword{ package }
 \seealso{

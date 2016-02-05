@@ -62,5 +62,27 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
 \code{\link{read.csv}}
 }
 \examples{
-## TODO
+\dontrun{
+## create an org file with a  table and read the table
+tmp <-
+"#+TITLE: A Table
+
+Next comes a table.
+
+#+name: test_table
+| a | b |
+|---+---|
+| 1 | 2 |
+| 3 | 4 |
+
+That was a table.
+"
+
+fname <- tempfile("testfile", fileext = ".org")
+writeLines(tmp, fname)
+
+require("org")
+readOrg(fname, table.name = "test_table")
+
+}
 }
