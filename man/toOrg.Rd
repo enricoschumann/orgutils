@@ -1,6 +1,8 @@
 \name{toOrg}
 \alias{toOrg}
 \alias{print.org}
+\alias{toOrg.data.frame}
+\alias{toOrg.Date}
 \title{
   Generate Org-mode Code
 }
@@ -11,6 +13,10 @@
 toOrg(x, ...)
 
 \method{print}{org}(x, \ldots)
+
+\method{toOrg}{data.frame}(x, \ldots)
+
+\method{toOrg}{Date}(x, \ldots)
 
 }
 \arguments{
@@ -28,7 +34,10 @@ toOrg(x, ...)
   
 }
 \value{
-  A character vector of class \code{org}.
+
+  A character vector of class \code{org}. To save it to a file, use
+  \code{\link{writeLines}}.
+
 }
 \references{
   Org mode manual \url{http://orgmode.org/manual/index.html}
@@ -41,4 +50,7 @@ toOrg(x, ...)
 }
 \examples{
 toOrg(data.frame(a = 1:5))
+
+\dontrun{
+writeLines(toOrg(data.frame(a = 1:5)), "~/Desktop/my_table.org")}
 }

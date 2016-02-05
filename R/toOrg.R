@@ -2,6 +2,13 @@ toOrg <- function(x, ... )
     UseMethod("toOrg")
 
 toOrg.data.frame <- function(x, ...) {
+    is.f <- unlist(lapply(x, function(i) inherits(i, "factor")))
+    if (any(is.f)) {
+        is.f <- which(is.f)
+        for (i in seq_along(is.f))
+            x[[ is.f[i] ]] <- as.character(x[[ is.f[i] ]])
+    }
+        
     type <- unname(unlist(lapply(x, mode)))
     
     x <- rbind(colnames(x), x)
@@ -30,9 +37,8 @@ toOrg.data.frame <- function(x, ...) {
     res
 }
 
-toOrg.Date <- function(x, ...) {
+toOrg.Date <- function(x, ...)
     strftime(x, "<%Y-%m-%d %a>")
-}
 
 print.org <- function(x, ...) {
     cat(x, sep = "\n")
@@ -81,6 +87,3 @@ readOrg <-function (file, header = TRUE,
         colnames(res) <- headers
     res
 }
-## file <- "~/Packages/org/inst/unitTests/orgtable3.org"
-## file <- "~/projects3/Fund_Replication/funds.org"
-## table.name  <- "allinstruments"
