@@ -52,14 +52,15 @@ toOrg(x, ...)
 toOrg(data.frame(a = 1:5))
 
 \dontrun{
-writeLines(toOrg(data.frame(a = 1:5)), "~/Desktop/my_table.org")}
+writeLines(toOrg(data.frame(a = 1:5)), "~/Desktop/my_table.org")
+}
 
-## convert Org dates to Date;
-d <- toOrg(as.Date("2015-01-01"))  ## "<2015-01-01 Thu>"
+## convert Org dates to Date
+d <- toOrg(as.Date("2015-01-01"))  ## <2015-01-01 Thu>
 
-## see ?strptime: "Each input string is processed as far as
-                   necessary for the format specified: any
-                   trailing characters are ignored."
+## see ?strptime: Each input string is processed as far as
+##                necessary for the format specified: any
+##                trailing characters are ignored.
 
-as.Date(d, "<%Y-%m-%d")
+as.Date(d, "<\%Y-\%m-\%d")
 }

@@ -2,15 +2,15 @@ toOrg <- function(x, ... )
     UseMethod("toOrg")
 
 toOrg.data.frame <- function(x, ...) {
-    is.f <- unlist(lapply(x, function(i) inherits(i, "factor")))
+    is.f <- unlist(lapply(x, function(i) inherits(i, "factor") || inherits(i, "Date")))
     if (any(is.f)) {
         is.f <- which(is.f)
         for (i in seq_along(is.f))
             x[[ is.f[i] ]] <- as.character(x[[ is.f[i] ]])
     }
-        
+
     type <- unname(unlist(lapply(x, mode)))
-    
+
     x <- rbind(colnames(x), x)
     for (i in seq_len(ncol(x))) {
         just <- if (type[i] == "character")
@@ -45,13 +45,13 @@ print.org <- function(x, ...) {
     invisible(x)
 }
 
-readOrg <-function (file, header = TRUE, 
+readOrg <-function (file, header = TRUE,
                     dec = ".", comment.char = "",
                     encoding = "", strip.white = TRUE,
                     table.name = NULL, ...) {
 
     txt <- readLines(file)
-    
+
     if (!is.null(table.name)) {
 
         start <- grep(paste0("^#\\+name: ", table.name), txt, ignore.case = TRUE)
@@ -66,7 +66,6 @@ readOrg <-function (file, header = TRUE,
             end <- length(txt) else end <- start + min(end) - 2L
         ## end <- min(end[end > start]) - 1L
         txt <- txt[start:end]
-        
     }
 
     sep <- 0
