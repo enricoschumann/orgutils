@@ -1,5 +1,7 @@
 2016-03-02  Enrico Schumann  <es@enricoschumann.net>
 
+        * DESCRIPTION (Version): 0.1-5
+
 	* R/toOrg.R (readOrg): horizontal separator lines,
 	i.e. those starting with '|-', are now skipped.
 
