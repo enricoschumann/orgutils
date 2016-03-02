@@ -71,13 +71,16 @@ readOrg <-function (file, header = TRUE,
     sep <- 0
     if (header) {
         head <- readLines(textConnection(txt), n = 10, encoding = encoding)
-        line <- min(grep("^ *\\| [^<]", head))
-        sep <- max(grep("^\\s*\\|-", head, perl = TRUE))
+        line <- min(grep("^ *\\| [^<]", head)) ## ignore format instructions, such as '<10>'
+        sep <- min(grep("^\\s*\\|-", head, perl = TRUE))
         headers <- trim(strsplit(head[line], "|",
                                     fixed = TRUE)[[1]][-1])
     }
     if (sep > 0)
         txt <- txt[-(1:sep)]
+
+    txt <- txt[!grepl("^\\s*\\|-", txt, perl = TRUE)] ## drop all h-lines
+    
     res <- read.csv(textConnection(txt), header = FALSE, sep = "|",
                     stringsAsFactors = FALSE, fileEncoding = encoding,
                     strip.white = strip.white, ...)
