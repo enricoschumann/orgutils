@@ -7,14 +7,14 @@
 
 2016-02-29  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): Version: 0.1-4
+	* DESCRIPTION (Version): 0.1-4
 
 	* R/toOrg.R (toOrg.data.frame): fixed -- Dates are now explicitly
 	coerced to character
 
 2016-02-05  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): Version: 0.1-3
+	* DESCRIPTION (Version): 0.1-3
 
 	* R/toOrg.R (toOrg.data.frame): fixed -- factor columns are now
 	converted to character before they are converted to org
@@ -31,13 +31,13 @@
 
 2015-12-03  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): Version: 0.1-1
+	* DESCRIPTION (Version): 0.1-1
 
 	* R/toOrg.R (toOrg.Date): new method
 
 2015-12-03  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): Version: 0.1-0
+	* DESCRIPTION (Version): 0.1-0
 
 	* R/toOrg.R (readOrg): argument 'table.name' is now
 	supported: when provided, the function will look for a
@@ -50,13 +50,13 @@
 
 2015-04-21  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): Version: 0.0-2
+	* DESCRIPTION (Version): 0.0-2
 
 	* man/toOrg.Rd: updated documentation
 
 2015-04-15  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): Version: 0.0-1
+	* DESCRIPTION (Version): 0.0-1
 
 	* R/toOrg.R (readOrg): new function
 	(toOrg): new generic; a method for data.frames exists
