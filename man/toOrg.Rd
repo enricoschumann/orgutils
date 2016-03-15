@@ -14,7 +14,7 @@ toOrg(x, ...)
 
 \method{print}{org}(x, \ldots)
 
-\method{toOrg}{data.frame}(x, \ldots)
+\method{toOrg}{data.frame}(x, row.names = NULL, \ldots)
 
 \method{toOrg}{Date}(x, \ldots)
 
@@ -23,14 +23,25 @@ toOrg(x, ...)
   \item{x}{
     an object
   }
+  \item{row.names}{
+
+    \code{NULL} or logical. If \code{TRUE}, \code{\link{row.names}} of \code{x}
+    are added as the first column, with column name \code{row.names}. 
+
+    If \code{NULL}, \code{\link{row.names}} are added when they are not
+    \code{1, 2, \ldots} (i.e. row numbers).
+
+    If \code{FALSE}, \code{\link{row.names}} are not added.
+    
+  }
   \item{\dots}{
     other arguments
   }
 }
 \details{
 
-  Transforms an object x into text with Org markup. Useful mostly for
-  data.frames.
+  Transforms an object \code{x} into text with Org markup. Useful mostly
+  when \code{x} is a \link{data.frame}.
   
 }
 \value{
@@ -50,6 +61,8 @@ toOrg(x, ...)
 }
 \examples{
 toOrg(data.frame(a = 1:5))
+toOrg(data.frame(a = 1:5), row.names = TRUE)
+toOrg(data.frame(a = 1:5, row.names = LETTERS[1:5]))
 
 \dontrun{
 writeLines(toOrg(data.frame(a = 1:5)), "~/Desktop/my_table.org")

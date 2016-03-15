@@ -1,5 +1,7 @@
 2016-03-15  Enrico Schumann  <es@enricoschumann.net>
 
+	* R/toOrg.R (toOrg.data.frame): new argument 'row.names'
+
 	* inst/unitTests/ut_toOrg.R: add tests for 'toOrg'
 
 2016-03-02  Enrico Schumann  <es@enricoschumann.net>

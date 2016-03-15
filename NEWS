@@ -1,3 +1,8 @@
+v0.1-6  (2016-03-15)
+
+  o toOrg.data.frame: new argument 'row.names', which controls
+    whether row.names are added to the Org table
+
 v0.1-5  (2016-03-02)
 
   o readOrg: all horizontal separator lines in a table,

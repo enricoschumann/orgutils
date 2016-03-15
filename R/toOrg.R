@@ -1,7 +1,7 @@
 toOrg <- function(x, ... )
     UseMethod("toOrg")
 
-toOrg.data.frame <- function(x, ...) {
+toOrg.data.frame <- function(x, row.names = NULL, ...) {
     is.f <- unlist(lapply(x, function(i) inherits(i, "factor") || inherits(i, "Date")))
     if (any(is.f)) {
         is.f <- which(is.f)
@@ -11,7 +11,18 @@ toOrg.data.frame <- function(x, ...) {
 
     type <- unname(unlist(lapply(x, mode)))
 
+    rn <- if ( (is.null(row.names) &&
+                nrow(x) > 0L &&
+                any(attr(x, "row.names") != seq_len(nrow(x)))) ||
+               isTRUE(row.names) )
+              c("row.names", row.names(x))
+          else 
+              NULL
     x <- rbind(colnames(x), x)
+    if (!is.null(rn)) {
+        x <- cbind(rn, x)
+        type <- c("character", type)
+    }
     for (i in seq_len(ncol(x))) {
         just <- if (type[i] == "character")
             "left" else "right"
@@ -50,11 +61,12 @@ readOrg <-function (file, header = TRUE,
                     encoding = "", strip.white = TRUE,
                     table.name = NULL, ...) {
 
-    txt <- readLines(file)
+    txt <- readLines(file, encoding = encoding)
 
     if (!is.null(table.name)) {
 
-        start <- grep(paste0("^#\\+name: ", table.name), txt, ignore.case = TRUE)
+        start <- grep(paste0("^#\\+name: ", table.name),
+                      txt, ignore.case = TRUE)
         if (length(start) > 1L)
             stop("several tables with the same name -- see lines ",
                     paste(start, collapse = ", "))
@@ -70,7 +82,7 @@ readOrg <-function (file, header = TRUE,
 
     sep <- 0
     if (header) {
-        head <- readLines(textConnection(txt), n = 10, encoding = encoding)
+        head <- txt[1:10]
         line <- min(grep("^ *\\| [^<]", head)) ## ignore format instructions, such as '<10>'
         sep <- min(grep("^\\s*\\|-", head, perl = TRUE))
         headers <- trim(strsplit(head[line], "|",
@@ -79,12 +91,16 @@ readOrg <-function (file, header = TRUE,
     if (sep > 0)
         txt <- txt[-(1:sep)]
 
-    txt <- txt[!grepl("^\\s*\\|-", txt, perl = TRUE)] ## drop all h-lines
+    ## drop horizontal lines |--------------|
+    txt <- txt[!grepl("^\\s*\\|-", txt, perl = TRUE)]
     
     res <- read.csv(textConnection(txt), header = FALSE, sep = "|",
                     stringsAsFactors = FALSE, fileEncoding = encoding,
                     strip.white = strip.white, ...)
-    res <- res[ , c(-1L, -length(res))] ## drop first and last column
+
+    ## drop first and last column
+    res <- res[ , c(-1L, -length(res))]
+    
     if (header)
         colnames(res) <- headers
     res
