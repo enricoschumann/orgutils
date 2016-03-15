@@ -25,8 +25,10 @@ toOrg(x, ...)
   }
   \item{row.names}{
 
-    \code{NULL} or logical. If \code{TRUE}, \code{\link{row.names}} of \code{x}
-    are added as the first column, with column name \code{row.names}. 
+    \code{NULL}, logical or character. If \code{TRUE},
+    \code{\link{row.names}} of \code{x} are added as the first column,
+    with column name "\code{row.names}". If a character string, the
+    string is used as the column name. See Examples.
 
     If \code{NULL}, \code{\link{row.names}} are added when they are not
     \code{1, 2, \ldots} (i.e. row numbers).
@@ -60,9 +62,11 @@ toOrg(x, ...)
   \code{\link{toLatex}}
 }
 \examples{
+toOrg(data.frame(a = 1:5, row.names = LETTERS[1:5]))
+
 toOrg(data.frame(a = 1:5))
 toOrg(data.frame(a = 1:5), row.names = TRUE)
-toOrg(data.frame(a = 1:5, row.names = LETTERS[1:5]))
+toOrg(data.frame(a = 1:5), row.names = "row numbers")
 
 \dontrun{
 writeLines(toOrg(data.frame(a = 1:5)), "~/Desktop/my_table.org")

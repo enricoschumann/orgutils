@@ -1,5 +1,10 @@
 2016-03-15  Enrico Schumann  <es@enricoschumann.net>
 
+	* R/toOrg.R (toOrg.data.frame): 'row.names' can be a
+	character string
+
+2016-03-15  Enrico Schumann  <es@enricoschumann.net>
+
         * DESCRIPTION (Version): 0.1-6
 
 	* R/toOrg.R (toOrg.data.frame): new argument 'row.names'

@@ -14,8 +14,12 @@ toOrg.data.frame <- function(x, row.names = NULL, ...) {
     rn <- if ( (is.null(row.names) &&
                 nrow(x) > 0L &&
                 any(attr(x, "row.names") != seq_len(nrow(x)))) ||
-               isTRUE(row.names) )
-              c("row.names", row.names(x))
+               isTRUE(row.names) ||
+               is.character(row.names) )
+              
+              c(if (is.character(row.names)) row.names else "row.names",
+                row.names(x))
+                                                 
           else 
               NULL
     x <- rbind(colnames(x), x)
