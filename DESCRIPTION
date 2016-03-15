@@ -1,8 +1,8 @@
 Package: org
 Type: Package
 Title: Helper Functions for Org Files
-Version: 0.1-5
-Date: 2016-03-02
+Version: 0.1-6
+Date: 2016-03-15
 Author: Enrico Schumann
 Maintainer: Enrico Schumann <es@enricoschumann.net>
 Description: Helper functions for Org files (http://orgmode.org/):
