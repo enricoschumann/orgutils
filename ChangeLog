@@ -1,3 +1,7 @@
+2016-03-15  Enrico Schumann  <es@enricoschumann.net>
+
+	* inst/unitTests/ut_toOrg.R: add tests for 'toOrg'
+
 2016-03-02  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-5
