@@ -2,10 +2,12 @@
 #+AUTHOR: Enrico Schumann
 
 
-Helper functions for handling Org files (http://orgmode.org/) and
+Helper functions for handling Org (http://orgmode.org/) files and
 markup: a generic function =toOrg= for transforming R objects in Org
-markup (most useful for data.frames) and a function to read Org
-tables into data.frames.
+markup (most useful for data.frames) and a function to read Org tables
+into data.frames.
+
+* Installation
 
 To install the package from a running R session, type:
 #+BEGIN_SRC R :eval never
@@ -14,4 +16,33 @@ install.packages('org', type = 'source',
                            getOption('repos')))
 #+END_SRC
 
+
+* Examples
+
+#+BEGIN_SRC R :results output :exports both :session **R**
+  df <- data.frame(numbers = 1:5, row.names = LETTERS[1:5])
+  df
+#+END_SRC
+
+#+RESULTS:
+:   numbers
+: A       1
+: B       2
+: C       3
+: D       4
+: E       5
+
+#+BEGIN_SRC R :results output :exports both :session **R**
+  require("org")
+  toOrg(df)
+#+END_SRC
+
+#+RESULTS:
+: | row.names | numbers |
+: |-----------+---------|
+: | A         |       1 |
+: | B         |       2 |
+: | C         |       3 |
+: | D         |       4 |
+: | E         |       5 |
 
