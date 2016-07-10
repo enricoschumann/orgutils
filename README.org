@@ -1,0 +1,17 @@
+#+TITLE: Org
+#+AUTHOR: Enrico Schumann
+
+
+Helper functions for handling Org files (http://orgmode.org/) and
+markup: a generic function =toOrg= for transforming R objects in Org
+markup (most useful for data.frames) and a function to read Org
+tables into data.frames.
+
+To install the package from a running R session, type:
+#+BEGIN_SRC R :eval never
+install.packages('org', type = 'source',
+                 repos = c('http://enricoschumann.net/R', 
+                           getOption('repos')))
+#+END_SRC
+
+
