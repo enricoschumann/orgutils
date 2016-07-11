@@ -64,7 +64,7 @@ There is also a =toOrg= method for dates.
 ** =readOrg=
 
 Create an Org file with a table and read the table. Here ist
-the file (not that =R= understands multiline strings).
+the file (note that =R= understands multiline strings).
 
 #+BEGIN_SRC R :results output :exports both :session **R**
   tmp <-
