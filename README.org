@@ -1,24 +1,27 @@
 #+TITLE: Org
 #+AUTHOR: Enrico Schumann
 
-
-Helper functions for handling Org (http://orgmode.org/) files and
-markup: a generic function =toOrg= for transforming R objects in Org
-markup (most useful for data.frames) and a function to read Org tables
-into data.frames.
+R tools for handling Org (http://orgmode.org/) files and markup: a
+generic function =toOrg= for transforming R objects in Org markup
+(most useful for data.frames) and a function for reading tables from
+Org files into data.frames.
 
 * Installation
 
 To install the package from a running R session, type:
 #+BEGIN_SRC R :eval never
-install.packages('org', type = 'source',
-                 repos = c('http://enricoschumann.net/R', 
-                           getOption('repos')))
+  install.packages('org', type = 'source',
+                   repos = c('http://enricoschumann.net/R', 
+                             getOption('repos')))
 #+END_SRC
 
 
 * Examples
 
+** =toOrg=
+
+Transform a =data.frame= into an Org table.
+   
 #+BEGIN_SRC R :results output :exports both :session **R**
   df <- data.frame(numbers = 1:5, row.names = LETTERS[1:5])
   df
@@ -45,4 +48,56 @@ install.packages('org', type = 'source',
 : | C         |       3 |
 : | D         |       4 |
 : | E         |       5 |
+
+
+
+There is also a =toOrg= method for dates.
+
+#+BEGIN_SRC R :results output :exports both :session **R**
+  toOrg(as.Date("2016-1-1"))
+#+END_SRC
+
+#+RESULTS:
+: [1] "<2016-01-01 Fri>"
+
+
+** =readOrg=
+
+Create an Org file with a table and read the table. Here ist
+the file (not that =R= understands multiline strings).
+
+#+BEGIN_SRC R :results output :exports both :session **R**
+  tmp <-
+  "#+TITLE: A Table
+
+  Next comes a table.
+
+  ,#+name: test_table
+  | a | b |
+  |---+---|
+  | 1 | 2 |
+  | 3 | 4 |
+
+  That was a table.
+  "
+#+END_SRC
+
+Write the file.
+#+BEGIN_SRC R :results output :exports both :session **R**
+  fname <- tempfile("testfile", fileext = ".org")
+  writeLines(tmp, fname)
+#+END_SRC
+
+=readOrg= reads the org table and interprets it as a
+=data.frame=.
+
+#+BEGIN_SRC R :results output :exports both :session **R**
+  require("org")
+  readOrg(fname, table.name = "test_table")
+#+END_SRC
+
+#+RESULTS:
+:   a b
+: 1 1 2
+: 2 3 4
 
