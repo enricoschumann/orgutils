@@ -1,3 +1,8 @@
+2016-09-06  Enrico Schumann  <es@enricoschumann.net>
+
+	* inst/unitTests/runTests.R: fix path to unit
+	tests; call report 'test_results.txt'
+
 2016-03-15  Enrico Schumann  <es@enricoschumann.net>
 
 	* R/toOrg.R (toOrg.data.frame): 'row.names' can be a
