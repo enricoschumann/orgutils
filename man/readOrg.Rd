@@ -9,6 +9,7 @@
 \usage{
 readOrg(file, header = TRUE, dec = ".", comment.char = "",
         encoding = "", strip.white = TRUE,
+        stringsAsFactors = FALSE,
         table.name = NULL, \dots)
 }
 \arguments{
@@ -29,6 +30,9 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
 }
   \item{strip.white}{
     logical
+}
+  \item{stringsAsFactors}{
+    logical; note that the default \code{FALSE} differs from read.csv
 }
   \item{table.name}{
     character: the name of the table to read (a regular expression)

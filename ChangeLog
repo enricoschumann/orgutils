@@ -1,5 +1,8 @@
 2016-09-06  Enrico Schumann  <es@enricoschumann.net>
 
+	* R/toOrg.R (readOrg): fixed -- 'stringsAsFactors'
+	could not passed; it is now an explicit argument
+
 	* inst/unitTests/runTests.R: fix path to unit
 	tests; call report 'test_results.txt'
 
@@ -27,8 +30,8 @@
 
 	* DESCRIPTION (Version): 0.1-4
 
-	* R/toOrg.R (toOrg.data.frame): fixed -- Dates are now explicitly
-	coerced to character
+	* R/toOrg.R (toOrg.data.frame): fixed -- Dates
+	are now explicitly coerced to character
 
 2016-02-05  Enrico Schumann  <es@enricoschumann.net>
 

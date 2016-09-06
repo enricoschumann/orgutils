@@ -63,6 +63,7 @@ print.org <- function(x, ...) {
 readOrg <-function (file, header = TRUE,
                     dec = ".", comment.char = "",
                     encoding = "", strip.white = TRUE,
+                    stringsAsFactors = FALSE,
                     table.name = NULL, ...) {
 
     txt <- readLines(file, encoding = encoding)
@@ -99,7 +100,8 @@ readOrg <-function (file, header = TRUE,
     txt <- txt[!grepl("^\\s*\\|-", txt, perl = TRUE)]
     
     res <- read.csv(textConnection(txt), header = FALSE, sep = "|",
-                    stringsAsFactors = FALSE, fileEncoding = encoding,
+                    stringsAsFactors = stringsAsFactors,
+                    fileEncoding = encoding,
                     strip.white = strip.white, ...)
 
     ## drop first and last column
