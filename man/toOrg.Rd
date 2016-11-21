@@ -16,7 +16,7 @@ toOrg(x, ...)
 
 \method{toOrg}{data.frame}(x, row.names = NULL, \ldots)
 
-\method{toOrg}{Date}(x, \ldots)
+\method{toOrg}{Date}(x, inactive = FALSE, \ldots)
 
 }
 \arguments{
@@ -36,6 +36,9 @@ toOrg(x, ...)
     If \code{FALSE}, \code{\link{row.names}} are not added.
     
   }
+  \item{inactive}{
+    logical: use inactive timestamps?
+  }
   \item{\dots}{
     other arguments
   }
@@ -48,8 +51,11 @@ toOrg(x, ...)
 }
 \value{
 
-  A character vector of class \code{org}. To save it to a file, use
-  \code{\link{writeLines}}.
+  A character vector, usually with class \code{org}. In
+  some cases, classes \code{\link{org}} and
+  \code{\link{character}} are attached.
+
+  To save it to a file, use \code{\link{writeLines}}.
 
 }
 \references{
