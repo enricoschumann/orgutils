@@ -38,5 +38,18 @@ test.toOrg <- function() {
                        "| 3         | 3 |"),
               class = "org")
     checkEquals(tbl, toOrg(data.frame(x = 1:3), TRUE))
+
+
+    
+    checkEquals(toOrg(as.Date("2016-1-1")),                      
+                structure("<2016-01-01 Fri>",
+                          class = c("org", "character")))
+    checkEquals(toOrg(as.Date("2016-1-1"), inactive = TRUE),
+                structure("[2016-01-01 Fri]",
+                          class = c("org", "character")))
+    ## checkEquals(toOrg(as.Date("2016-1-1")),                      
+    ##             "<2016-01-01 Fri>")
+    ## checkEquals(toOrg(as.Date("2016-1-1"), inactive = TRUE),
+    ##             "[2016-01-01 Fri]")
     
 }
