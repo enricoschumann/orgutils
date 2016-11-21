@@ -37,7 +37,8 @@ toOrg(x, ...)
     
   }
   \item{inactive}{
-    logical: use inactive timestamps?
+    logical: use inactive timestamps? See
+    \url{http://orgmode.org/manual/Creating-timestamps.html} .
   }
   \item{\dots}{
     other arguments

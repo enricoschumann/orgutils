@@ -1,3 +1,16 @@
+2016-11-21  Enrico Schumann  <es@enricoschumann.net>
+
+	* NAMESPACE: explicitly import 'read.csv' from
+	package 'utils'
+
+	* inst/unitTests/ut_readOrg.R: add test cases
+	for empty files and header-only files
+
+2016-11-02  Enrico Schumann  <es@enricoschumann.net>
+
+	* R/toOrg.R (toOrg.Date): fixed -- active
+	timestamps were not correctly formated
+
 2016-09-06  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-7

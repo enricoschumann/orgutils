@@ -1,3 +1,8 @@
+v0.1-8  (2016-11-21)
+
+  o toOrg.Date: new argument 'inactive' to support
+    inactive timestamps
+
 v0.1-7  (2016-09-06)
 
   o Fixed -- 'stringsAsFactors' could not be passed to
