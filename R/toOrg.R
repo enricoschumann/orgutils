@@ -52,8 +52,18 @@ toOrg.data.frame <- function(x, row.names = NULL, ...) {
     res
 }
 
-toOrg.Date <- function(x, ...)
-    strftime(x, "<%Y-%m-%d %a>")
+toOrg.Date <- function(x, inactive = FALSE,...) {
+    res <- if (inactive)
+               strftime(x, "[%Y-%m-%d %a]")
+           else
+               strftime(x, "<%Y-%m-%d %a>")
+    class(res) <- c("org", "character")
+    res
+}
+
+## as.data.frame.org <- function(x, row.names = NULL, optional = FALSE, ...) {
+##     data.frame(unclass(x))
+## }
 
 print.org <- function(x, ...) {
     cat(x, sep = "\n")
@@ -67,7 +77,9 @@ readOrg <-function (file, header = TRUE,
                     table.name = NULL, ...) {
 
     txt <- readLines(file, encoding = encoding)
-
+    if (length(txt) == 0L)
+        stop("no lines available in input")
+    
     if (!is.null(table.name)) {
 
         start <- grep(paste0("^#\\+name: ", table.name),
@@ -98,16 +110,24 @@ readOrg <-function (file, header = TRUE,
 
     ## drop horizontal lines |--------------|
     txt <- txt[!grepl("^\\s*\\|-", txt, perl = TRUE)]
-    
-    res <- read.csv(textConnection(txt), header = FALSE, sep = "|",
-                    stringsAsFactors = stringsAsFactors,
-                    fileEncoding = encoding,
-                    strip.white = strip.white, ...)
 
-    ## drop first and last column
-    res <- res[ , c(-1L, -length(res))]
-    
-    if (header)
-        colnames(res) <- headers
+    if (length(txt) && any(txt != "")) {
+        res <- read.csv(textConnection(txt), header = FALSE, sep = "|",
+                        stringsAsFactors = stringsAsFactors,
+                        fileEncoding = encoding,
+                        strip.white = strip.white, ...)
+        
+        ## drop first and last column
+        res <- res[ , c(-1L, -length(res))]
+    } else {
+        res <- vector("list", length = length(headers))
+        for (i in seq_along(res))
+            res[[i]] <- character(0L)
+        res <- as.data.frame(res, stringsAsFactors = FALSE)
+    }
+        
+    if (header) {
+            colnames(res) <- headers
+    }
     res
 }
