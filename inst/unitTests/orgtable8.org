@@ -1,0 +1,4 @@
+#+TITLE: Test file 8
+
+| col1 | col2 | col3 |
+|------+------+------|

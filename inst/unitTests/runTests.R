@@ -1,16 +1,22 @@
-if (require("RUnit", quietly = TRUE)) {
-    localTesting <- TRUE
-    pkg <- "org"
-    require(pkg)
-    path <- if (localTesting)
-        paste0("~/Packages/", pkg, "/inst/unitTests") else
-        system.file("unitTests", package = "org")
+pkg <- "orgutils"
+if (tolower(Sys.getenv("ES_PACKAGE_TESTING")) == "true" &&
+    require("RUnit", quietly = TRUE) &&
+    require(pkg, quietly = TRUE, character.only = TRUE)) {
 
-    myTestSuite <- defineTestSuite(pkg, dirs = path,
-                                   testFileRegexp = "ut_.+")
+    path <- paste0("~/Packages/", pkg, "/inst/unitTests")
+
+    ## if the package is installed and you want to run
+    ## the test, use this path:    
+    ##
+    ##     path <- system.file("unitTests", package = pkg)
+    ##
+    
+    myTestSuite <- defineTestSuite(pkg,
+                                   dirs = path,
+                                   testFileRegexp = "ut_.*[^~]$")
     stopifnot(isValidTestSuite(myTestSuite))
     testResult <- runTestSuite(myTestSuite, verbose = 0L)
-    printTextProtocol(testResult, showDetails = TRUE,
-                      fileName = paste(file.path(path, "test_results"),
-                      ".txt", sep = ""))
+    printTextProtocol(testResult,
+                      showDetails = TRUE,
+                      fileName = paste0(file.path(path, "test_results"), ".txt"))
 }

@@ -1,3 +1,8 @@
+2016-12-16  Enrico Schumann  <es@enricoschumann.net>
+
+	* DESCRIPTION (Package): rename package to
+	'orgutils'
+
 2016-11-21  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-8

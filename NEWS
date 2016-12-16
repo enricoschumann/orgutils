@@ -1,3 +1,7 @@
+v0.2-0  (2016-12-16)
+
+  o The package has been renamed to 'orgutils'.
+
 v0.1-8  (2016-11-21)
 
   o toOrg.Date: new argument 'inactive' to support
@@ -10,8 +14,9 @@ v0.1-7  (2016-09-06)
 
 v0.1-6  (2016-03-15)
 
-  o toOrg.data.frame: new argument 'row.names', which controls
-    whether row.names are added to the Org table
+  o toOrg.data.frame: new argument 'row.names', which
+    controls whether row.names are added to the Org
+    table
 
 v0.1-5  (2016-03-02)
 
@@ -20,14 +25,14 @@ v0.1-5  (2016-03-02)
 
 v0.1-4  (2016-02-29)
 
-  o Fixed -- in 'toOrg.data.frame', data.frames with Date columns
-    produced an error (thanks to Torsten von Bartenwerffer for
-    reporting)
+  o Fixed -- in 'toOrg.data.frame', data.frames with
+    Date columns produced an error (thanks to Torsten
+    von Bartenwerffer for reporting)
 
 v0.1-3  (2016-02-05)
 
-  o Fixed -- in 'toOrg.data.frame', column names of factor columns
-    would come out as NA.
+  o Fixed -- in 'toOrg.data.frame', column names of
+    factor columns would come out as NA.
 
 v0.1-2  (2016-01-07)
 

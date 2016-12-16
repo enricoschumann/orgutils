@@ -1,4 +1,4 @@
-#+TITLE: Org
+#+TITLE: Org Utils
 #+AUTHOR: Enrico Schumann
 
 R tools for handling Org (http://orgmode.org/) files and markup: a
@@ -10,7 +10,7 @@ Org files into data.frames.
 
 To install the package from a running R session, type:
 #+BEGIN_SRC R :eval never
-  install.packages('org', type = 'source',
+  install.packages('orgutils', type = 'source',
                    repos = c('http://enricoschumann.net/R', 
                              getOption('repos')))
 #+END_SRC
@@ -36,7 +36,7 @@ Transform a =data.frame= into an Org table.
 : E       5
 
 #+BEGIN_SRC R :results output :exports both :session **R**
-  require("org")
+  require("orgutils")
   toOrg(df)
 #+END_SRC
 
