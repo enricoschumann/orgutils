@@ -1,9 +1,9 @@
-\name{org-package}
-\alias{org-package}
+\name{orgutils-package}
+\alias{orgutils-package}
 \alias{org}
 \docType{package}
 \title{
-  Org
+  Org Utils
 }
 \description{
   Helper functions to interact with org files: read org tables, convert
