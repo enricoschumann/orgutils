@@ -1,3 +1,8 @@
+v0.2-1  (2017-01-25)
+
+  o New method 'toOrg.POSIXt', which works for both
+    'POSIXct' and 'POSIXlt'.
+
 v0.2-0  (2016-12-16)
 
   o The package has been renamed to 'orgutils'.

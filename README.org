@@ -1,10 +1,11 @@
 #+TITLE: Org Utils
 #+AUTHOR: Enrico Schumann
 
-R tools for handling Org (http://orgmode.org/) files and markup: a
-generic function =toOrg= for transforming R objects in Org markup
-(most useful for data.frames) and a function for reading tables from
-Org files into data.frames.
+R tools for handling Org (http://orgmode.org/) files
+and markup: a generic function =toOrg= for transforming
+R objects into Org markup (currently with methods for
+dataframes, dates and times) and a function for reading
+tables from Org files into data.frames.
 
 * Installation
 
@@ -15,6 +16,7 @@ To install the package from a running R session, type:
                              getOption('repos')))
 #+END_SRC
 
+or clone/build the GitHub version.
 
 * Examples
 
@@ -50,15 +52,25 @@ Transform a =data.frame= into an Org table.
 : | E         |       5 |
 
 
-
-There is also a =toOrg= method for dates.
+There is also a =toOrg= method for dates (class =Date=)
+and times (classes =POSIXct= and =POSIXlt=).
 
 #+BEGIN_SRC R :results output :exports both :session **R**
   toOrg(as.Date("2016-1-1"))
 #+END_SRC
 
 #+RESULTS:
-: [1] "<2016-01-01 Fri>"
+: <2016-01-01 Fri>
+
+For [[http://orgmode.org/manual/Creating-timestamps.html][inactive timestamps]] set the argument =inactive= to =TRUE=.
+
+#+BEGIN_SRC R :results output :exports both :session **R**
+  toOrg(as.POSIXct("2016-1-1 10:00:00"), inactive = TRUE)
+#+END_SRC
+
+#+RESULTS:
+: [2016-01-01 Fri 10:00:00]
+
 
 
 ** =readOrg=
@@ -66,7 +78,7 @@ There is also a =toOrg= method for dates.
 Create an Org file with a table and read the table. Here ist
 the file (note that =R= understands multiline strings).
 
-#+BEGIN_SRC R :results output :exports both :session **R**
+#+BEGIN_SRC R :results none :exports both :session **R**
   tmp <-
   "#+TITLE: A Table
 
@@ -82,8 +94,10 @@ the file (note that =R= understands multiline strings).
   "
 #+END_SRC
 
+
+
 Write the file.
-#+BEGIN_SRC R :results output :exports both :session **R**
+#+BEGIN_SRC R :results none :exports both :session **R**
   fname <- tempfile("testfile", fileext = ".org")
   writeLines(tmp, fname)
 #+END_SRC
@@ -92,7 +106,7 @@ Write the file.
 =data.frame=.
 
 #+BEGIN_SRC R :results output :exports both :session **R**
-  require("org")
+  require("orgutils")
   readOrg(fname, table.name = "test_table")
 #+END_SRC
 
