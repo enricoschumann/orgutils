@@ -6,8 +6,8 @@ Date: 2016-12-16
 Author: Enrico Schumann
 Maintainer: Enrico Schumann <es@enricoschumann.net>
 Description: Helper functions for Org files (http://orgmode.org/):
-  a generic function 'toOrg' for transforming R objects in Org
-  markup (most useful for data.frames) and a function to read Org
-  tables into data.frames.
+  a generic function 'toOrg' for transforming R objects into Org
+  markup (most useful for data.frames; there is also method for Dates)
+  and a function to read Org tables into data.frames.
 License: GPL (>=2)
 Imports: textutils

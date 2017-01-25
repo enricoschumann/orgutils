@@ -2,6 +2,7 @@ export("readOrg",
        "toOrg")
 importFrom(textutils, trim)
 importFrom("utils", "read.csv")
-S3method(toOrg, data.frame)
 S3method(toOrg, Date)
+S3method(toOrg, POSIXt)
+S3method(toOrg, data.frame)
 S3method(print, org)

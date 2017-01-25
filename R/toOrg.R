@@ -61,9 +61,14 @@ toOrg.Date <- function(x, inactive = FALSE,...) {
     res
 }
 
-## as.data.frame.org <- function(x, row.names = NULL, optional = FALSE, ...) {
-##     data.frame(unclass(x))
-## }
+toOrg.POSIXt <- function(x, inactive = FALSE,...) {
+    res <- if (inactive)
+               strftime(x, "[%Y-%m-%d %a %H:%M:%S]")
+           else
+               strftime(x, "<%Y-%m-%d %a %H:%M:%S>")
+    class(res) <- c("org", "character")
+    res
+}
 
 print.org <- function(x, ...) {
     cat(x, sep = "\n")

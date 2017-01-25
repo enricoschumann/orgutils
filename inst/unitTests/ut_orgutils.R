@@ -147,7 +147,7 @@ test.toOrg <- function() {
     checkEquals(tbl, toOrg(data.frame(x = 1:3), TRUE))
 
 
-    
+    ## Date    
     checkEquals(toOrg(as.Date("2016-1-1")),
                 structure(paste0("<2016-01-01 ",
                                  format(as.Date("2016-01-01"),
@@ -161,4 +161,23 @@ test.toOrg <- function() {
                                         "%a"),
                                  "]"),
                           class = c("org", "character")))    
+
+    ## POSIXt
+    ##   The test may fail since it depends on finding
+    ##   the system's local timezone.
+    times <- as.POSIXct(c("2016-1-1 10:00:00",
+                          "2016-1-1 11:00:00"),
+                        tz = Sys.timezone(location = TRUE))
+    checkEquals(toOrg(times),            
+                structure(paste("<2016-01-01",
+                                format(times, "%a"),
+                                c("10:00:00>", "11:00:00>")),
+                          class = c("org", "character")))
+
+    times <- as.POSIXlt(times)
+    checkEquals(toOrg(times),            
+                structure(paste("<2016-01-01",
+                                format(times, "%a"),
+                                c("10:00:00>", "11:00:00>")),
+                          class = c("org", "character")))
 }
