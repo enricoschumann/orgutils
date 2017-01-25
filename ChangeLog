@@ -1,5 +1,7 @@
 2017-01-25  Enrico Schumann  <es@enricoschumann.net>
 
+        * DESCRIPTION (Version): 0.2-1
+
 	* R/toOrg.R (toOrg.POSIXt): new method, which
 	works for both 'POSIXct' and 'POSIXlt'
 
