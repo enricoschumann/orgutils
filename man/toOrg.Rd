@@ -66,7 +66,7 @@ toOrg(x, ...)
   Enrico Schumann
 }
 \seealso{
-  \code{\link{toLatex}}
+  \code{\link{toLatex}}, \code{\link[microplot]{as.orgtable}}
 }
 \examples{
 toOrg(data.frame(a = 1:5, row.names = LETTERS[1:5]))

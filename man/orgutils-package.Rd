@@ -13,6 +13,9 @@
 
   Helper functions to interact with org files: read org tables, convert
   data.frames to org tables.
+
+  There are several other packages that help you work with org files as
+  well, such as \pkg{orgR}.
   
 }
 \author{
