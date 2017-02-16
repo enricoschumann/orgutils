@@ -4,7 +4,7 @@
   Read Org Tables
 }
 \description{
-  Read an org table
+  Read an Org table
 }
 \usage{
 readOrg(file, header = TRUE, dec = ".", comment.char = "",
@@ -42,7 +42,7 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
 }
 }
 \details{
-
+  
   When \code{header} is \code{TRUE}, \code{readOrg} will read the first
   10 lines of the file (or the table, when \code{table.name} is
   specified) and try to find an org table header. Formating instructions
@@ -55,7 +55,7 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
   
 }
 \value{
-  A data.frame.
+  A \code{\link{data.frame}}.
 }
 \references{
   Org manual \url{http://orgmode.org/manual/index.html}
@@ -64,7 +64,7 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
   Enrico Schumann
 }
 \seealso{
-\code{\link{read.csv}}
+\code{\link[utils]{read.csv}}
 }
 \examples{
 \dontrun{

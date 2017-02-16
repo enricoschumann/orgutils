@@ -4,7 +4,7 @@
 \alias{toOrg.data.frame}
 \alias{toOrg.Date}
 \title{
-  Generate Org-mode Code
+  Generate Org-mode Markup
 }
 \description{
   Transform R objects into org-mode objects

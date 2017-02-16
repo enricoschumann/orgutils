@@ -7,12 +7,12 @@
 }
 \description{
   Helper functions to interact with org files: read org tables, convert
-  data.frames to org tables.
+  R objects to org markup.
 }
 \details{
 
   Helper functions to interact with org files: read org tables, convert
-  data.frames to org tables.
+  R objects to org markup.
 
   There are several other packages that help you work with org files as
   well, such as \pkg{orgR}.
@@ -26,5 +26,5 @@
 }
 \keyword{ package }
 \seealso{
-  \code{\link{toOrg}}
+  \code{\link{toOrg}}, \code{\link{readOrg}}
 }
