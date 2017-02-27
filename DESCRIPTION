@@ -1,8 +1,8 @@
 Package: orgutils
 Type: Package
 Title: Helper Functions for Org Files
-Version: 0.2-1
-Date: 2017-01-25
+Version: 0.2-2
+Date: 2017-02-27
 Author: Enrico Schumann
 Maintainer: Enrico Schumann <es@enricoschumann.net>
 Description: Helper functions for Org files (http://orgmode.org/):

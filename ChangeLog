@@ -1,5 +1,7 @@
 2017-02-27  Enrico Schumann  <es@enricoschumann.net>
 
+        * DESCRIPTION (Version): 0.2-2
+
 	* R/toOrg.R (readOrg): fixed -- argument 'dec'
 	had been ignored
 
