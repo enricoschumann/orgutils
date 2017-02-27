@@ -118,6 +118,7 @@ readOrg <-function (file, header = TRUE,
 
     if (length(txt) && any(txt != "")) {
         res <- read.csv(textConnection(txt), header = FALSE, sep = "|",
+                        dec = dec,
                         stringsAsFactors = stringsAsFactors,
                         fileEncoding = encoding,
                         strip.white = strip.white, ...)
