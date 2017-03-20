@@ -1,3 +1,9 @@
+2017-03-20  Enrico Schumann  <es@enricoschumann.net>
+
+	* DESCRIPTION (Version): Version: 0.2-3
+
+	* man/toOrg.Rd: document 'toOrg.POSIXt'
+
 2017-02-27  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.2-2
@@ -38,31 +44,35 @@
 
         * DESCRIPTION (Version): 0.1-7
 
-	* R/toOrg.R (readOrg): fixed -- 'stringsAsFactors'
-	could not passed; it is now an explicit argument
+	* R/toOrg.R (readOrg): fixed --
+	'stringsAsFactors' could not passed; it is now
+	an explicit argument
 
 	* inst/unitTests/runTests.R: fix path to unit
 	tests; call report 'test_results.txt'
 
 2016-03-15  Enrico Schumann  <es@enricoschumann.net>
 
-	* R/toOrg.R (toOrg.data.frame): 'row.names' can be a
-	character string
+	* R/toOrg.R (toOrg.data.frame): 'row.names' can
+	be a character string
 
 2016-03-15  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-6
 
-	* R/toOrg.R (toOrg.data.frame): new argument 'row.names'
+	* R/toOrg.R (toOrg.data.frame): new argument
+	'row.names'
 
-	* inst/unitTests/ut_toOrg.R: add tests for 'toOrg'
+	* inst/unitTests/ut_toOrg.R: add tests for
+	'toOrg'
 
 2016-03-02  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-5
 
-	* R/toOrg.R (readOrg): horizontal separator lines,
-	i.e. those starting with '|-', are now skipped.
+	* R/toOrg.R (readOrg): horizontal separator
+	lines, i.e. those starting with '|-', are now
+	skipped.
 
 2016-02-29  Enrico Schumann  <es@enricoschumann.net>
 
@@ -75,18 +85,20 @@
 
 	* DESCRIPTION (Version): 0.1-3
 
-	* R/toOrg.R (toOrg.data.frame): fixed -- factor columns are now
-	converted to character before they are converted to org
-	markup (not doing so had caused their column names become NA)
+	* R/toOrg.R (toOrg.data.frame): fixed -- factor
+	columns are now converted to character before
+	they are converted to org markup (not doing so
+	had caused their column names become NA)
 
 2016-01-07  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-2
 
-	* R/toOrg.R (readOrg): stop when 'table.name' is not unique in the
-	org file
+	* R/toOrg.R (readOrg): stop when 'table.name'
+	is not unique in the org file
 
-	* inst/unitTests/ut_readOrg.R (test.readOrg): added unit tests
+	* inst/unitTests/ut_readOrg.R (test.readOrg):
+	added unit tests
 
 2015-12-03  Enrico Schumann  <es@enricoschumann.net>
 
@@ -98,10 +110,10 @@
 
 	* DESCRIPTION (Version): 0.1-0
 
-	* R/toOrg.R (readOrg): argument 'table.name' is now
-	supported: when provided, the function will look for a
-	table that begins with '#+NAME: table.name' in the
-	specified org-file
+	* R/toOrg.R (readOrg): argument 'table.name' is
+	now supported: when provided, the function will
+	look for a table that begins with '#+NAME:
+	table.name' in the specified org-file
 
 2015-10-28  Enrico Schumann  <es@enricoschumann.net>
 

@@ -4,7 +4,7 @@
   Read Org Tables
 }
 \description{
-  Read an Org table
+  Read an Org table from a file.
 }
 \usage{
 readOrg(file, header = TRUE, dec = ".", comment.char = "",
@@ -52,6 +52,10 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
   When \code{table.name} is specified, the function looks for a line that
   starts with \code{#+NAME: <table.name>} and reads the table that
   follows that line.
+
+  For empty files, \code{readOrg} behaves like \link[utils]{read.csv}:
+  when completely empty, it fails; when headers are found, a zero-row
+  \link{data.frame} is returned.
   
 }
 \value{
@@ -68,7 +72,7 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
 }
 \examples{
 \dontrun{
-## create an org file with a  table and read the table
+## create an Org file with a table and read the table
 tmp <-
 "#+TITLE: A Table
 

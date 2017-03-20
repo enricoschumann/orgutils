@@ -3,11 +3,12 @@
 \alias{print.org}
 \alias{toOrg.data.frame}
 \alias{toOrg.Date}
+\alias{toOrg.POSIXt}
 \title{
   Generate Org-mode Markup
 }
 \description{
-  Transform R objects into org-mode objects
+  Transform R objects into Org-mode objects.
 }
 \usage{
 toOrg(x, ...)
@@ -18,6 +19,7 @@ toOrg(x, ...)
 
 \method{toOrg}{Date}(x, inactive = FALSE, \ldots)
 
+\method{toOrg}{POSIXt}(x, inactive = FALSE, \ldots)
 }
 \arguments{
   \item{x}{
@@ -46,15 +48,21 @@ toOrg(x, ...)
 }
 \details{
 
-  Transforms an object \code{x} into text with Org markup. Useful mostly
-  when \code{x} is a \link{data.frame}.
+  Transforms an object \code{x} into character vectors with Org
+  markup. Most useful when \code{x} is a \link{data.frame}.
+
+  \code{toOrg} is meant for snippets of code, not for producing whole
+  Org documents.
+
+  When you work with \code{POSIXt}, make sure that a
+  potential timezone does not cause trouble: Org does
+  not support timezones.
   
 }
 \value{
 
-  A character vector, usually with class \code{org}. In
-  some cases, classes \code{\link{org}} and
-  \code{\link{character}} are attached.
+  A character vector, usually with class \code{org}. In some cases,
+  class \code{\link{character}} is additionally attached.
 
   To save it to a file, use \code{\link{writeLines}}.
 
@@ -66,25 +74,54 @@ toOrg(x, ...)
   Enrico Schumann
 }
 \seealso{
-  \code{\link{toLatex}}, \code{\link[microplot]{as.orgtable}}
+  \code{\link[utils]{toLatex}}, \code{\link[microplot]{as.orgtable}}
 }
 \examples{
-toOrg(data.frame(a = 1:5, row.names = LETTERS[1:5]))
+toOrg(data.frame(a = 1:3, row.names = LETTERS[1:3]))
+## =>  | row.names | a |
+##     |-----------+---|
+##     | A         | 1 |
+##     | B         | 2 |
+##     | C         | 3 |
 
-toOrg(data.frame(a = 1:5))
-toOrg(data.frame(a = 1:5), row.names = TRUE)
+toOrg(data.frame(a = 1:3))
+## =>  | a |
+##     |---|
+##     | 1 |
+##     | 2 |
+##     | 3 |
+
+toOrg(data.frame(a = 1:3), row.names = TRUE)
+## =>  | row.names | a |
+##     |-----------+---|
+##     | 1         | 1 |
+##     | 2         | 2 |
+##     | 3         | 3 |
+
+
 toOrg(data.frame(a = 1:5), row.names = "row numbers")
+## =>  | row numbers | a |
+##     |-------------+---|
+##     | 1           | 1 |
+##     | 2           | 2 |
+##     | 3           | 3 |
+##     | 4           | 4 |
+##     | 5           | 5 |
 
 \dontrun{
-writeLines(toOrg(data.frame(a = 1:5)), "~/Desktop/my_table.org")
-}
+writeLines(toOrg(data.frame(a = 1:3)), "~/Desktop/my_table.org")}
 
-## convert Org dates to Date
-d <- toOrg(as.Date("2015-01-01"))  ## <2015-01-01 Thu>
+## Dates/Times
+toOrg(as.Date("2015-01-01"))                   ## <2015-01-01 Thu>
+toOrg(as.Date("2015-01-01"), inactive = TRUE)  ## [2015-01-01 Thu]
+toOrg(Sys.time())                              ## <2017-03-20 Mon 13:23:18>
+
+## Convert Org dates to Date
 
 ## see ?strptime: Each input string is processed as far as
 ##                necessary for the format specified: any
 ##                trailing characters are ignored.
-
+d <- toOrg(as.Date("2015-01-01"))
 as.Date(d, "<\%Y-\%m-\%d")
+
 }
