@@ -1,9 +1,10 @@
-dev
-dev/
+.es_keywords
 .git
 .gitignore
-THANKS
-.es_keywords
 ChangeLog
+README.org
+THANKS
+dev
+dev/
 reports
 reports/
