@@ -1,0 +1,149 @@
+%% \VignetteIndexEntry{orgutils}
+\documentclass[a4paper,11pt]{article}
+\usepackage[left = 3cm, top = 2cm, bottom = 2cm, right = 4cm]{geometry}
+\usepackage[noae,nogin]{Sweave}
+\usepackage{libertine}
+\usepackage[scaled=0.8]{DejaVuSansMono}
+\usepackage[T1]{fontenc}
+\renewcommand*\familydefault{\sfdefault} 
+\usepackage{amsmath,amstext}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{fancyvrb}
+\definecolor{grau2}{rgb}{.2,.2,.2}
+\definecolor{grau7}{rgb}{.7,.7,.7}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{frame=single,xleftmargin=0em,%
+  formatcom=\color{grau2},rulecolor=\color{grau7}}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{xleftmargin=2em}
+\fvset{listparameters={\setlength{\topsep}{0pt}}}
+\renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}}
+\SweaveOpts{keep.source = TRUE, eps = TRUE}
+
+<<echo=false>>=
+options(continue = "  ", digits = 3, width = 60, useFancyQuotes = FALSE)
+@
+
+\begin{document}
+\title{Examples for the \texttt{orgutils} package}
+\author{Enrico Schumann\\\url{es@enricoschumann.net}}
+
+{\raggedright{\LARGE Examples for the \texttt{orgutils} package}}\medskip
+
+\noindent Enrico Schumann\\
+\noindent \url{es@enricoschumann.net}\\
+\bigskip
+
+\section{\texttt{toOrg}}
+
+\texttt{toOrg} is a generic function in the spirit of
+\texttt{toLatex}: it transforms R objects into Org snippets. This is
+most useful for data frames:
+<<>>=
+df <- data.frame(numbers = 1:5, row.names = LETTERS[1:5])
+df
+@ 
+
+\noindent And transformed into Org markup:
+<<>>=
+require("orgutils")
+toOrg(df)
+@ 
+
+\noindent Since Org tables are very human-readable, such a display is
+also useful for plain-text emails or reports. 
+
+There are also \texttt{toOrg} methods for dates (class \texttt{Date})
+and times (classes \texttt{POSIXct} and \texttt{POSIXlt}).
+<<>>=
+toOrg(Sys.Date())
+toOrg(Sys.time())
+toOrg(Sys.time(), inactive = TRUE)
+@ 
+
+
+\newpage 
+
+\section{\texttt{readOrg}}
+
+Suppose you have the following Org file:
+
+\begin{Verbatim}[frame=single]
+#+TITLE: My table file
+
+There is text.
+
+#+name: table1
+| A | B | C |
+|---+---+---|
+| 1 | 2 | 3 |
+| 4 | 5 | 6 |
+
+And more text.
+
+#+name: table2
+| D | E | F |
+|---+---+---|
+| 1 | 2 | 3 |
+| 4 | 5 | X |
+
+And more text.
+
+#+name: table3
+| G | H | I |
+|---+---+---|
+| 5 | 7 | 9 |
+| 6 | 8 | 0 |
+
+And more text.
+
+\end{Verbatim}
+
+<<echo=false,results=hide>>=
+file <- 
+"
+#+TITLE: My table file
+
+There is text.
+
+#+name: table1
+| A | B | C |
+|---+---+---|
+| 1 | 2 | 3 |
+| 4 | 5 | 6 |
+
+And more text.
+
+#+name: table2
+| D | E | F |
+|---+---+---|
+| 1 | 2 | 3 |
+| 4 | 5 | X |
+
+And more text.
+
+#+name: table3
+| G | H | I |
+|---+---+---|
+| 5 | 7 | 9 |
+| 6 | 8 | 0 |
+
+And more text.
+
+"
+
+writeLines(file, filename <- tempfile())
+@ 
+\noindent To read the second table, say, use \texttt{readOrg} and specify the
+\texttt{table.name} argument.
+
+<<>>=
+readOrg(filename, table.name = "table2")
+@ 
+\appendix
+<<results=tex>>=
+toLatex(sessionInfo())
+@ 
+\end{document}
