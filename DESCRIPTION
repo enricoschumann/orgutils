@@ -1,8 +1,8 @@
 Package: orgutils
 Type: Package
 Title: Helper Functions for Org Files
-Version: 0.2-3
-Date: 2017-03-20
+Version: 0.4-0
+Date: 2017-03-21
 Author: Enrico Schumann
 Maintainer: Enrico Schumann <es@enricoschumann.net>
 Description: Helper functions for Org files (http://orgmode.org/):
@@ -11,3 +11,4 @@ Description: Helper functions for Org files (http://orgmode.org/):
   Dates/POSIXt) and a function to read Org tables into data frames.
 License: GPL (>=2)
 Imports: textutils
+Suggests: RUnit

@@ -1,6 +1,13 @@
+2017-03-21  Enrico Schumann  <es@enricoschumann.net>
+
+	* DESCRIPTION (Suggests): add RUnit package
+	(Version): 0.4-0
+
+	* vignettes/orgutils_examples.Rnw: add vignette
+
 2017-03-20  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): Version: 0.2-3
+	* DESCRIPTION (Version): 0.2-3
 
 	* man/toOrg.Rd: document 'toOrg.POSIXt'
 
