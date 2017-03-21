@@ -1,4 +1,4 @@
-%% \VignetteIndexEntry{orgutils}
+%% \VignetteIndexEntry{Examples for the orgutils package}
 \documentclass[a4paper,11pt]{article}
 \usepackage[left = 3cm, top = 2cm, bottom = 2cm, right = 4cm]{geometry}
 \usepackage[noae,nogin]{Sweave}
