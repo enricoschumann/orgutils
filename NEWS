@@ -1,3 +1,8 @@
+v0.4-2  (2017-06-30)
+
+  o readOrg: new argument 'text', as in 'read.table',
+    which allows to write (small) inline tables
+
 v0.4-1  (2017-03-21)
 
   o First CRAN release.
