@@ -79,9 +79,14 @@ readOrg <-function (file, header = TRUE,
                     dec = ".", comment.char = "",
                     encoding = "", strip.white = TRUE,
                     stringsAsFactors = FALSE,
-                    table.name = NULL, ...) {
+                    table.name = NULL, text, ...) {
 
-    txt <- readLines(file, encoding = encoding)
+    if (missing(file) && !missing(text)) {
+        txt <- text
+        txt <- strsplit(txt, "\n", fixed = TRUE)[[1L]]
+    } else 
+        txt <- readLines(file, encoding = encoding)
+    
     if (length(txt) == 0L)
         stop("no lines available in input")
     

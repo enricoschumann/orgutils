@@ -10,7 +10,7 @@
 readOrg(file, header = TRUE, dec = ".", comment.char = "",
         encoding = "", strip.white = TRUE,
         stringsAsFactors = FALSE,
-        table.name = NULL, \dots)
+        table.name = NULL, text, \dots)
 }
 \arguments{
   \item{file}{
@@ -32,14 +32,27 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
     logical
 }
   \item{stringsAsFactors}{
-    logical; note that the default \code{FALSE} differs from read.csv
-}
+
+    logical: note that the default \code{FALSE} differs
+    from read.csv
+
+  }
   \item{table.name}{
-    character: the name of the table to read (a regular expression)
-}
+
+    character: the name of the table to read (a regular
+    expression)
+
+  }
+  \item{text}{
+
+    character: if \code{file} is not supplied,
+    \code{text} is read via
+    \code{\link{textConnection}}
+
+  }
   \item{\dots}{
     further arguments
-}
+  }
 }
 \details{
   

@@ -1,3 +1,18 @@
+2017-06-30  Enrico Schumann  <es@enricoschumann.net>
+
+        * R/toOrg.R (readOrg): new argument 'text', as
+        in 'read.table'. It allows to write (small)
+        inline tables as in
+
+          data <- readOrg(text =
+          "
+          |       when | amount |
+          |------------+--------|
+          | 2016-01-01 |     -1 |
+          | 2016-02-01 |      2 |
+          | 2016-03-01 |     -2 |
+          "
+
 2017-03-21  Enrico Schumann  <es@enricoschumann.net>
 
 	* DESCRIPTION (Suggests): add RUnit package
