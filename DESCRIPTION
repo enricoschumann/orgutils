@@ -12,3 +12,4 @@ Description: Helper functions for Org files (<http://orgmode.org/>):
 License: GPL (>=2)
 Imports: textutils
 Suggests: RUnit
+URL: http://enricoschumann.net/R/packages/orgutils/
