@@ -104,7 +104,16 @@ test.readOrg <- function() {
                           .Names = c("col1", "col2", "col3"),
                           row.names = c(NA, -1L),
                           class = "data.frame"))
-    
+
+    t10 <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable10.org", dec = ",")
+    checkEquals(t10,
+                structure(list(col1 = c(1.1, 4.4),
+                               col2 = c(2.2, 5.5),
+                               col3 = c(3.3, 6.6)),
+                          .Names = c("col1", "col2", "col3"),
+                          class = "data.frame",
+                          row.names = c(NA, -2L)))
+
 }
 
 

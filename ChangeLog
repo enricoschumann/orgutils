@@ -1,5 +1,7 @@
 2017-06-30  Enrico Schumann  <es@enricoschumann.net>
 
+        * DESCRIPTION (Version): 0.4-2
+
         * R/toOrg.R (readOrg): new argument 'text', as
         in 'read.table'. It allows to write (small)
         inline tables as in
