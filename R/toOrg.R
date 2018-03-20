@@ -142,3 +142,40 @@ readOrg <-function (file, header = TRUE,
     }
     res
 }
+
+cleanOrg <- function(file,
+                     clock = TRUE,
+                     state.changes = TRUE,
+                     dry.run = FALSE, 
+                     overwrite = TRUE,
+                     ...) {
+
+    txt <- readLines(file, ...)
+    i <- 0
+    j <- 0
+    if (clock) {
+        i <- grep(paste0(" *CLOCK: *[[<][0-9][0-9][0-9][0-9]-",
+                         "[0-9][0-9]-[0-9][0-9].*"), txt,
+                  perl = TRUE)
+    } else
+        i <- 0
+    if (state.changes) {
+        j <- grep(paste0(' *- *State *".*" *from *".*" *',
+                         '[<[][0-9][0-9][0-9][0-9]-',
+                         '[0-9][0-9]-[0-9][0-9].*'), txt,
+                  perl = TRUE)
+    } else
+        j <- 0
+
+    ij <- sort(unique(c(i,j)))
+    ij <- ij[ij > 0]
+    if (dry.run) {
+        df <- data.frame("Removed lines" = txt[ij],
+                         stringsAsFactors = FALSE)
+        row.names(df) <- as.character(ij)
+        df
+    } else if (overwrite) {
+        writeLines(txt[-ij], file)
+    } else
+        txt[-ij]
+}

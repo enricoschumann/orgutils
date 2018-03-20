@@ -1,3 +1,7 @@
+2018-03-20  Enrico Schumann  <es@enricoschumann.net>
+
+	* R/toOrg.R (cleanOrg): add function
+
 2017-06-30  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.4-2
