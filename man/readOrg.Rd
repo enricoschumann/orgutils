@@ -10,7 +10,8 @@
 readOrg(file, header = TRUE, dec = ".", comment.char = "",
         encoding = "", strip.white = TRUE,
         stringsAsFactors = FALSE,
-        table.name = NULL, text, \dots)
+        table.name = NULL, text,
+        table.missing = NULL, \dots)
 }
 \arguments{
   \item{file}{
@@ -48,6 +49,14 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
     character: if \code{file} is not supplied,
     \code{text} is read via
     \code{\link{textConnection}}
+
+  }
+  \item{table.missing}{
+
+    what to do if a table specified by
+    \code{table.name} is not found.  Default is to
+    return \code{NULL}. Set to string \code{"stop"} to
+    throw an error.
 
   }
   \item{\dots}{

@@ -2,7 +2,8 @@ toOrg <- function(x, ... )
     UseMethod("toOrg")
 
 toOrg.data.frame <- function(x, row.names = NULL, ...) {
-    is.f <- unlist(lapply(x, function(i) inherits(i, "factor") || inherits(i, "Date")))
+    is.f <- unlist(lapply(x, function(i) inherits(i, "factor") ||
+                                         inherits(i, "Date")))
     if (any(is.f)) {
         is.f <- which(is.f)
         for (i in seq_along(is.f))
@@ -16,11 +17,11 @@ toOrg.data.frame <- function(x, row.names = NULL, ...) {
                 any(attr(x, "row.names") != seq_len(nrow(x)))) ||
                isTRUE(row.names) ||
                is.character(row.names) )
-              
+
               c(if (is.character(row.names)) row.names else "row.names",
                 row.names(x))
-                                                 
-          else 
+
+          else
               NULL
     x <- rbind(colnames(x), x)
     if (!is.null(rn)) {
@@ -79,17 +80,18 @@ readOrg <-function (file, header = TRUE,
                     dec = ".", comment.char = "",
                     encoding = "", strip.white = TRUE,
                     stringsAsFactors = FALSE,
-                    table.name = NULL, text, ...) {
+                    table.name = NULL, text,
+                    table.missing = NULL, ...) {
 
     if (missing(file) && !missing(text)) {
         txt <- text
         txt <- strsplit(txt, "\n", fixed = TRUE)[[1L]]
-    } else 
+    } else
         txt <- readLines(file, encoding = encoding)
-    
+
     if (length(txt) == 0L)
         stop("no lines available in input")
-    
+
     if (!is.null(table.name)) {
 
         start <- grep(paste0("^#\\+name: ", table.name),
@@ -97,8 +99,12 @@ readOrg <-function (file, header = TRUE,
         if (length(start) > 1L)
             stop("several tables with the same name -- see lines ",
                     paste(start, collapse = ", "))
-        if (!length(start))
-            stop("table ", sQuote(table.name), " not found")
+        if (!length(start)) {
+            if (is.null(table.missing))
+                return(invisible(NULL))
+            else
+                stop("table ", sQuote(table.name), " not found")
+        }
         start <- start + 1L
         end <- grep("^ *[^|]|^\\s*$", txt[start:length(txt)], perl = TRUE)
         if (!length(end))
@@ -127,7 +133,7 @@ readOrg <-function (file, header = TRUE,
                         stringsAsFactors = stringsAsFactors,
                         fileEncoding = encoding,
                         strip.white = strip.white, ...)
-        
+
         ## drop first and last column
         res <- res[ , c(-1L, -length(res))]
     } else {
@@ -136,9 +142,9 @@ readOrg <-function (file, header = TRUE,
             res[[i]] <- character(0L)
         res <- as.data.frame(res, stringsAsFactors = FALSE)
     }
-        
-    if (header) {
-            colnames(res) <- headers
-    }
+
+    if (header)
+        colnames(res) <- headers
+
     res
 }
