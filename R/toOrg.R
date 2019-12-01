@@ -16,11 +16,11 @@ toOrg.data.frame <- function(x, row.names = NULL, ...) {
                 any(attr(x, "row.names") != seq_len(nrow(x)))) ||
                isTRUE(row.names) ||
                is.character(row.names) )
-              
+
               c(if (is.character(row.names)) row.names else "row.names",
                 row.names(x))
-                                                 
-          else 
+
+          else
               NULL
     x <- rbind(colnames(x), x)
     if (!is.null(rn)) {
@@ -84,12 +84,12 @@ readOrg <-function (file, header = TRUE,
     if (missing(file) && !missing(text)) {
         txt <- text
         txt <- strsplit(txt, "\n", fixed = TRUE)[[1L]]
-    } else 
+    } else
         txt <- readLines(file, encoding = encoding)
-    
+
     if (length(txt) == 0L)
         stop("no lines available in input")
-    
+
     if (!is.null(table.name)) {
 
         start <- grep(paste0("^#\\+name: ", table.name),
@@ -127,7 +127,7 @@ readOrg <-function (file, header = TRUE,
                         stringsAsFactors = stringsAsFactors,
                         fileEncoding = encoding,
                         strip.white = strip.white, ...)
-        
+
         ## drop first and last column
         res <- res[ , c(-1L, -length(res))]
     } else {
@@ -136,7 +136,7 @@ readOrg <-function (file, header = TRUE,
             res[[i]] <- character(0L)
         res <- as.data.frame(res, stringsAsFactors = FALSE)
     }
-        
+
     if (header) {
             colnames(res) <- headers
     }
@@ -146,7 +146,7 @@ readOrg <-function (file, header = TRUE,
 cleanOrg <- function(file,
                      clock = TRUE,
                      state.changes = TRUE,
-                     dry.run = FALSE, 
+                     dry.run = FALSE,
                      overwrite = TRUE,
                      ...) {
 
