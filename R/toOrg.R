@@ -2,7 +2,8 @@ toOrg <- function(x, ... )
     UseMethod("toOrg")
 
 toOrg.data.frame <- function(x, row.names = NULL, ...) {
-    is.f <- unlist(lapply(x, function(i) inherits(i, "factor") || inherits(i, "Date")))
+    is.f <- unlist(lapply(x, function(i) inherits(i, "factor") ||
+                                         inherits(i, "Date")))
     if (any(is.f)) {
         is.f <- which(is.f)
         for (i in seq_along(is.f))
@@ -79,7 +80,8 @@ readOrg <-function (file, header = TRUE,
                     dec = ".", comment.char = "",
                     encoding = "", strip.white = TRUE,
                     stringsAsFactors = FALSE,
-                    table.name = NULL, text, ...) {
+                    table.name = NULL, text,
+                    table.missing = NULL, ...) {
 
     if (missing(file) && !missing(text)) {
         txt <- text
@@ -97,8 +99,12 @@ readOrg <-function (file, header = TRUE,
         if (length(start) > 1L)
             stop("several tables with the same name -- see lines ",
                     paste(start, collapse = ", "))
-        if (!length(start))
-            stop("table ", sQuote(table.name), " not found")
+        if (!length(start)) {
+            if (is.null(table.missing))
+                return(invisible(NULL))
+            else
+                stop("table ", sQuote(table.name), " not found")
+        }
         start <- start + 1L
         end <- grep("^ *[^|]|^\\s*$", txt[start:length(txt)], perl = TRUE)
         if (!length(end))
@@ -137,9 +143,9 @@ readOrg <-function (file, header = TRUE,
         res <- as.data.frame(res, stringsAsFactors = FALSE)
     }
 
-    if (header) {
-            colnames(res) <- headers
-    }
+    if (header)
+        colnames(res) <- headers
+
     res
 }
 

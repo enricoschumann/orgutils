@@ -1,6 +1,14 @@
 2018-03-20  Enrico Schumann  <es@enricoschumann.net>
 
-	* R/toOrg.R (cleanOrg): add function
+        * R/toOrg.R (cleanOrg): add function
+
+2019-04-02  Enrico Schumann  <es@enricoschumann.net>
+
+        * R/toOrg.R (readOrg): when a table specified via
+        'table.name' is not found, the function now returns
+        'NULL'. To get the previous behaviour (throwing an
+        error), specify the new argument 'table.missing' to
+        "stop"
 
 2017-06-30  Enrico Schumann  <es@enricoschumann.net>
 
@@ -21,141 +29,141 @@
 
 2017-03-21  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Suggests): add RUnit package
-	(Version): 0.4-0
+        * DESCRIPTION (Suggests): add RUnit package
+        (Version): 0.4-0
 
-	* vignettes/orgutils_examples.Rnw: add vignette
+        * vignettes/orgutils_examples.Rnw: add vignette
 
 2017-03-20  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): 0.2-3
+        * DESCRIPTION (Version): 0.2-3
 
-	* man/toOrg.Rd: document 'toOrg.POSIXt'
+        * man/toOrg.Rd: document 'toOrg.POSIXt'
 
 2017-02-27  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.2-2
 
-	* R/toOrg.R (readOrg): fixed -- argument 'dec'
-	had been ignored
+        * R/toOrg.R (readOrg): fixed -- argument 'dec'
+        had been ignored
 
 2017-01-25  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.2-1
 
-	* R/toOrg.R (toOrg.POSIXt): new method, which
-	works for both 'POSIXct' and 'POSIXlt'
+        * R/toOrg.R (toOrg.POSIXt): new method, which
+        works for both 'POSIXct' and 'POSIXlt'
 
 2016-12-16  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.2-0
 
-	* DESCRIPTION (Package): rename package to
-	'orgutils'
+        * DESCRIPTION (Package): rename package to
+        'orgutils'
 
 2016-11-21  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-8
 
-	* NAMESPACE: explicitly import 'read.csv' from
-	package 'utils'
+        * NAMESPACE: explicitly import 'read.csv' from
+        package 'utils'
 
-	* inst/unitTests/ut_readOrg.R: add test cases
-	for empty files and header-only files
+        * inst/unitTests/ut_readOrg.R: add test cases
+        for empty files and header-only files
 
 2016-11-02  Enrico Schumann  <es@enricoschumann.net>
 
-	* R/toOrg.R (toOrg.Date): fixed -- active
-	timestamps were not correctly formated
+        * R/toOrg.R (toOrg.Date): fixed -- active
+        timestamps were not correctly formated
 
 2016-09-06  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-7
 
-	* R/toOrg.R (readOrg): fixed --
-	'stringsAsFactors' could not passed; it is now
-	an explicit argument
+        * R/toOrg.R (readOrg): fixed --
+        'stringsAsFactors' could not passed; it is now
+        an explicit argument
 
-	* inst/unitTests/runTests.R: fix path to unit
-	tests; call report 'test_results.txt'
+        * inst/unitTests/runTests.R: fix path to unit
+        tests; call report 'test_results.txt'
 
 2016-03-15  Enrico Schumann  <es@enricoschumann.net>
 
-	* R/toOrg.R (toOrg.data.frame): 'row.names' can
-	be a character string
+        * R/toOrg.R (toOrg.data.frame): 'row.names' can
+        be a character string
 
 2016-03-15  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-6
 
-	* R/toOrg.R (toOrg.data.frame): new argument
-	'row.names'
+        * R/toOrg.R (toOrg.data.frame): new argument
+        'row.names'
 
-	* inst/unitTests/ut_toOrg.R: add tests for
-	'toOrg'
+        * inst/unitTests/ut_toOrg.R: add tests for
+        'toOrg'
 
 2016-03-02  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-5
 
-	* R/toOrg.R (readOrg): horizontal separator
-	lines, i.e. those starting with '|-', are now
-	skipped.
+        * R/toOrg.R (readOrg): horizontal separator
+        lines, i.e. those starting with '|-', are now
+        skipped.
 
 2016-02-29  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): 0.1-4
+        * DESCRIPTION (Version): 0.1-4
 
-	* R/toOrg.R (toOrg.data.frame): fixed -- Dates
-	are now explicitly coerced to character
+        * R/toOrg.R (toOrg.data.frame): fixed -- Dates
+        are now explicitly coerced to character
 
 2016-02-05  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): 0.1-3
+        * DESCRIPTION (Version): 0.1-3
 
-	* R/toOrg.R (toOrg.data.frame): fixed -- factor
-	columns are now converted to character before
-	they are converted to org markup (not doing so
-	had caused their column names become NA)
+        * R/toOrg.R (toOrg.data.frame): fixed -- factor
+        columns are now converted to character before
+        they are converted to org markup (not doing so
+        had caused their column names become NA)
 
 2016-01-07  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.1-2
 
-	* R/toOrg.R (readOrg): stop when 'table.name'
-	is not unique in the org file
+        * R/toOrg.R (readOrg): stop when 'table.name'
+        is not unique in the org file
 
-	* inst/unitTests/ut_readOrg.R (test.readOrg):
-	added unit tests
-
-2015-12-03  Enrico Schumann  <es@enricoschumann.net>
-
-	* DESCRIPTION (Version): 0.1-1
-
-	* R/toOrg.R (toOrg.Date): new method
+        * inst/unitTests/ut_readOrg.R (test.readOrg):
+        added unit tests
 
 2015-12-03  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): 0.1-0
+        * DESCRIPTION (Version): 0.1-1
 
-	* R/toOrg.R (readOrg): argument 'table.name' is
-	now supported: when provided, the function will
-	look for a table that begins with '#+NAME:
-	table.name' in the specified org-file
+        * R/toOrg.R (toOrg.Date): new method
+
+2015-12-03  Enrico Schumann  <es@enricoschumann.net>
+
+        * DESCRIPTION (Version): 0.1-0
+
+        * R/toOrg.R (readOrg): argument 'table.name' is
+        now supported: when provided, the function will
+        look for a table that begins with '#+NAME:
+        table.name' in the specified org-file
 
 2015-10-28  Enrico Schumann  <es@enricoschumann.net>
 
-	* NAMESPACE: import 'trim' from package 'textutils'
+        * NAMESPACE: import 'trim' from package 'textutils'
 
 2015-04-21  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): 0.0-2
+        * DESCRIPTION (Version): 0.0-2
 
-	* man/toOrg.Rd: updated documentation
+        * man/toOrg.Rd: updated documentation
 
 2015-04-15  Enrico Schumann  <es@enricoschumann.net>
 
-	* DESCRIPTION (Version): 0.0-1
+        * DESCRIPTION (Version): 0.0-1
 
-	* R/toOrg.R (readOrg): new function
-	(toOrg): new generic; a method for data.frames exists
+        * R/toOrg.R (readOrg): new function
+        (toOrg): new generic; a method for data.frames exists

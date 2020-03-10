@@ -1,10 +1,13 @@
 Package: orgutils
 Type: Package
 Title: Helper Functions for Org Files
-Version: 0.4-2
-Date: 2017-06-30
-Author: Enrico Schumann
+Version: 0.4-3
+Date: 2020-03-10
 Maintainer: Enrico Schumann <es@enricoschumann.net>
+Authors@R: person("Enrico", "Schumann",
+                  role  = c("aut", "cre"),
+                  email = "es@enricoschumann.net",
+                  comment = c(ORCID = "0000-0001-7601-6576"))
 Description: Helper functions for Org files (<http://orgmode.org/>):
   a generic function 'toOrg' for transforming R objects into Org
   markup (most useful for data frames; there are also methods for

@@ -1,7 +1,11 @@
+v0.4-3  (????-??-??; not yet released)
+
+  o readOrg: new argument 'table.missing'
+
 v0.4-2  (2017-06-30)
 
   o readOrg: new argument 'text', as in 'read.table',
-    which allows to write (small) inline tables
+    which allows to read (small) inline tables
 
 v0.4-1  (2017-03-21)
 
