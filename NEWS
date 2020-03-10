@@ -1,5 +1,8 @@
-v0.4-3  (????-??-??; not yet released)
+v0.5-0  (????-??-??; not yet released)
 
+  o new function 'cleanOrg', which removes CLOCK lines
+    and STATE changes
+  
   o readOrg: new argument 'table.missing'
 
 v0.4-2  (2017-06-30)

@@ -1,7 +1,7 @@
 Package: orgutils
 Type: Package
 Title: Helper Functions for Org Files
-Version: 0.4-3
+Version: 0.5-0
 Date: 2020-03-10
 Maintainer: Enrico Schumann <es@enricoschumann.net>
 Authors@R: person("Enrico", "Schumann",
