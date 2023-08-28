@@ -36,7 +36,7 @@ toOrg(x, ...)
     \code{1, 2, \ldots} (i.e. row numbers).
 
     If \code{FALSE}, \code{\link{row.names}} are not added.
-    
+
   }
   \item{inactive}{
     logical: use inactive timestamps? See
@@ -57,7 +57,7 @@ toOrg(x, ...)
   When you work with \code{POSIXt}, make sure that a
   potential timezone does not cause trouble: Org does
   not support timezones.
-  
+
 }
 \value{
 
@@ -74,7 +74,8 @@ toOrg(x, ...)
   Enrico Schumann
 }
 \seealso{
-  \code{\link[utils]{toLatex}}, \code{\link[microplot]{as.orgtable}}
+  \code{\link[utils]{toLatex}}, function \code{as.orgtable} in
+  \pkg{microplot}
 }
 \examples{
 toOrg(data.frame(a = 1:3, row.names = LETTERS[1:3]))
