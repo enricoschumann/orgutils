@@ -185,3 +185,100 @@ cleanOrg <- function(file,
     } else
         txt[-ij]
 }
+
+file <- c("~/org", "~/Trading/Server/server.org")
+.readOrg <-function (file, header = TRUE,
+                     dec = ".", comment.char = "",
+                     encoding = "", strip.white = TRUE,
+                     stringsAsFactors = FALSE,
+                     table.name = NULL, text,
+                     table.missing = NULL,
+                     file.filter = "org$", ...) {
+
+    files <- file
+    isdir <- file.info(files)$isdir
+
+    more.files <- NULL
+    for (d in files[isdir]) {
+        more.files <- c(more.files, dir(d, full.names = TRUE))
+    }
+
+    files <- files[!isdir]
+    files <- c(files, more.files)
+    if (is.character(file.filter))
+        files <- files[grepl(file.filter, files)]
+
+    all_files <- list()
+    for (file in files) {
+
+        all_files[[file]] <- .readOrg1(file)
+    }
+
+}
+
+##
+.readOrg1 <- function(file,
+                           TODO.states = c("TODO", "DONE"), ...) {
+
+    txt <- readLines(file, ...)
+
+    start <- grep("^[*][*][^*]", txt)
+    end <- c(start[-length(start)] + diff(start) - 1, length(txt))
+
+    df <- data.frame(start, end)
+
+    ans <- vector("list", nrow(df))
+
+    for (i in seq_len(nrow(df)))
+        ans[[i]] <- txt[ df[[1]][i]:df[[2]][i] ]
+
+    .entry <- function(s) {
+
+        txt <- s
+
+        if (grepl(":[a-zA-Z]:$", s[1L])) {
+            tags <- gsub(".* (+[a-zA-Z:]+:)$", "\\1", s[1])
+            tags <- strsplit(tags, ":", fixed = TRUE)[[1]]
+            tags <- tags[tags != ""]
+        } else
+            tags <- NULL
+
+
+        title <- gsub(paste0("^[*]+ (",
+                             paste0(TODO.states, collapse = "|"),
+                             " )?"), "", s[1])
+        title <- gsub(" +[a-zA-Z:]+:$", "", title)
+        s <- s[-1]
+
+        i <- grep("^\\s+created: ", s)
+        if (length(i)) {
+            created <- as.Date(gsub(".*(\\d{4}-\\d{2}.\\d{2}).*", "\\1", s[i]))
+            s <- s[-i]
+        } else
+            created <- NA
+
+        i <- grep("DEADLINE: ", s)
+        if (length(i)) {
+            deadline <- as.Date(gsub(".*(\\d{4}-\\d{2}.\\d{2}).*", "\\1", s[i]))
+            s <- s[-i]
+        } else
+            deadline <- NA
+
+        list(title = title,
+             created = created,
+             deadline = deadline,
+             scheduled = NA,
+             tags = tags,
+             body = s,
+             source = txt)
+
+    }
+
+    lapply(ans, .entry)
+}
+
+## file <- "~/org/TODO-list.org"
+## ans <- read_TODO_list(file, encoding = "UTF-8")
+## df <- data.frame(created = .Date(unlist(lapply(ans, `[[`, "created"))),
+##                  title = substr(unlist(lapply(ans, `[[`, "title")), 1, 40))
+

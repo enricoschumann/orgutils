@@ -1,3 +1,9 @@
+2024-01-31  Enrico Schumann  <es@enricoschumann.net>
+
+        * DESCRIPTION (Version): 0.5-0
+
+        * NAMESPACE (cleanOrg): no longer export function
+
 2018-03-20  Enrico Schumann  <es@enricoschumann.net>
 
         * R/toOrg.R (cleanOrg): add function

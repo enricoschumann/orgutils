@@ -8,7 +8,7 @@ test.readOrg <- function() {
                    silent = TRUE)
 
 
-    
+
     t1 <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable1.org")
     checkEquals(t1,
                 structure(list(col1 = c(1L, 4L), col2 = c(2L, 5L),
@@ -18,7 +18,7 @@ test.readOrg <- function() {
                           row.names = c(NA, -2L)))
 
 
-    
+
     t2 <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable2.org")
     checkEquals(t2,
                 structure(list(col1 = c(1L, 4L), col2 = c(2L, 5L),
@@ -28,7 +28,7 @@ test.readOrg <- function() {
                           row.names = c(NA, -2L)))
 
 
-    
+
     t3 <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable3.org",
                   table.name = "table3")
     checkEquals(t3,
@@ -37,9 +37,9 @@ test.readOrg <- function() {
                           .Names = c("col1", "col2", "col3"),
                           class = "data.frame",
                           row.names = c(NA, -2L)))
-    
 
-    
+
+
     t4 <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable4.org",
                   table.name = "table4")
     checkEquals(t4,
@@ -49,8 +49,8 @@ test.readOrg <- function() {
                           class = "data.frame",
                           row.names = c(NA, -2L)))
 
-    
-    
+
+
     t5 <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable5.org",
                   table.name = "table5")
     checkEquals(t5,
@@ -60,8 +60,8 @@ test.readOrg <- function() {
                           class = "data.frame",
                           row.names = c(NA, -2L)))
 
-    
-    
+
+
     t6 <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable6.org",
                       table.name = "table6")
     checkEquals(t6,
@@ -72,7 +72,7 @@ test.readOrg <- function() {
                           class = "data.frame",
                           row.names = c(NA, -3L)))
 
-    
+
 
     ## an empty org table
     t7 <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable7.org")
@@ -84,7 +84,7 @@ test.readOrg <- function() {
                           row.names = integer(0),
                           class = "data.frame"))
 
-    
+
     ## empty with title
     t8 <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable8.org")
     checkEquals(t8,
@@ -124,7 +124,7 @@ test.toOrg <- function() {
     df <- data.frame(x = 1:3, row.names = letters[1:3])
     tbl <- structure(c("| row.names | x |",
                        "|-----------+---|",
-                       "| a         | 1 |", 
+                       "| a         | 1 |",
                        "| b         | 2 |",
                        "| c         | 3 |"),
               class = "org")
@@ -132,31 +132,31 @@ test.toOrg <- function() {
     checkEquals(tbl, toOrg(df))
     checkEquals(tbl, toOrg(df), TRUE)
 
-    
-    
+
+
     df <- data.frame(x = 1:3)
     tbl <- structure(c("| x |",
                        "|---|",
-                       "| 1 |", 
+                       "| 1 |",
                        "| 2 |",
                        "| 3 |"),
               class = "org")
-    
+
     checkEquals(tbl, toOrg(df))
 
 
-    
+
     df <- data.frame(x = 1:3)
     tbl <- structure(c("| row.names | x |",
                        "|-----------+---|",
-                       "| 1         | 1 |", 
+                       "| 1         | 1 |",
                        "| 2         | 2 |",
                        "| 3         | 3 |"),
               class = "org")
     checkEquals(tbl, toOrg(data.frame(x = 1:3), TRUE))
 
 
-    ## Date    
+    ## Date
     checkEquals(toOrg(as.Date("2016-1-1")),
                 structure(paste0("<2016-01-01 ",
                                  format(as.Date("2016-01-01"),
@@ -164,12 +164,12 @@ test.toOrg <- function() {
                                  ">"),
                           class = c("org", "character")))
 
-    checkEquals(toOrg(as.Date("2016-1-1"), inactive = TRUE),                      
+    checkEquals(toOrg(as.Date("2016-1-1"), inactive = TRUE),
                 structure(paste0("[2016-01-01 ",
                                  format(as.Date("2016-01-01"),
                                         "%a"),
                                  "]"),
-                          class = c("org", "character")))    
+                          class = c("org", "character")))
 
     ## POSIXt
     ##   The test may fail since it depends on finding
@@ -177,14 +177,14 @@ test.toOrg <- function() {
     times <- as.POSIXct(c("2016-1-1 10:00:00",
                           "2016-1-1 11:00:00"),
                         tz = Sys.timezone(location = TRUE))
-    checkEquals(toOrg(times),            
+    checkEquals(toOrg(times),
                 structure(paste("<2016-01-01",
                                 format(times, "%a"),
                                 c("10:00:00>", "11:00:00>")),
                           class = c("org", "character")))
 
     times <- as.POSIXlt(times)
-    checkEquals(toOrg(times),            
+    checkEquals(toOrg(times),
                 structure(paste("<2016-01-01",
                                 format(times, "%a"),
                                 c("10:00:00>", "11:00:00>")),

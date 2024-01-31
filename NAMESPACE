@@ -1,5 +1,4 @@
-export("cleanOrg",
-       "readOrg",
+export("readOrg",
        "toOrg")
 importFrom(textutils, trim)
 importFrom("utils", "read.csv")

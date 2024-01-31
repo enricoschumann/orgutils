@@ -5,7 +5,7 @@
 \usepackage{libertine}
 \usepackage[scaled=0.8]{DejaVuSansMono}
 \usepackage[T1]{fontenc}
-\renewcommand*\familydefault{\sfdefault} 
+\renewcommand*\familydefault{\sfdefault}
 \usepackage{amsmath,amstext}
 \usepackage{hyperref}
 \usepackage{natbib}
@@ -44,16 +44,16 @@ most useful for data frames:
 <<>>=
 df <- data.frame(numbers = 1:5, row.names = LETTERS[1:5])
 df
-@ 
+@
 
 \noindent And transformed into Org markup:
 <<>>=
 require("orgutils")
 toOrg(df)
-@ 
+@
 
 \noindent Since Org tables are very human-readable, such a display is
-also useful for plain-text emails or reports. 
+also useful for plain-text emails or reports.
 
 There are also \texttt{toOrg} methods for dates (class \texttt{Date})
 and times (classes \texttt{POSIXct} and \texttt{POSIXlt}).
@@ -61,10 +61,10 @@ and times (classes \texttt{POSIXct} and \texttt{POSIXlt}).
 toOrg(Sys.Date())
 toOrg(Sys.time())
 toOrg(Sys.time(), inactive = TRUE)
-@ 
+@
 
 
-\newpage 
+\newpage
 
 \section{\texttt{readOrg}}
 
@@ -102,7 +102,7 @@ And more text.
 \end{Verbatim}
 
 <<echo=false,results=hide>>=
-file <- 
+file <-
 "
 #+TITLE: My table file
 
@@ -135,15 +135,15 @@ And more text.
 "
 
 writeLines(file, filename <- tempfile())
-@ 
+@
 \noindent To read the second table, say, use \texttt{readOrg} and specify the
 \texttt{table.name} argument.
 
 <<>>=
 readOrg(filename, table.name = "table2")
-@ 
+@
 \appendix
 <<results=tex>>=
 toLatex(sessionInfo())
-@ 
+@
 \end{document}

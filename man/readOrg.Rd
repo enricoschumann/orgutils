@@ -64,7 +64,7 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
   }
 }
 \details{
-  
+
   When \code{header} is \code{TRUE}, \code{readOrg} will read the first
   10 lines of the file (or the table, when \code{table.name} is
   specified) and try to find an org table header. Formating instructions
@@ -78,13 +78,13 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
   For empty files, \code{readOrg} behaves like \link[utils]{read.csv}:
   when completely empty, it fails; when headers are found, a zero-row
   \link{data.frame} is returned.
-  
+
 }
 \value{
   A \code{\link{data.frame}}.
 }
 \references{
-  Org manual \url{http://orgmode.org/manual/index.html}
+  Org manual \url{https://orgmode.org/manual/index.html}
 }
 \author{
   Enrico Schumann

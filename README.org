@@ -12,7 +12,7 @@ tables from Org files into data.frames.
 To install the package from a running R session, type:
 #+BEGIN_SRC R :eval never
   install.packages('orgutils', type = 'source',
-                   repos = c('http://enricoschumann.net/R', 
+                   repos = c('http://enricoschumann.net/R',
                              getOption('repos')))
 #+END_SRC
 
@@ -23,7 +23,7 @@ or clone/build the GitHub version.
 ** =toOrg=
 
 Transform a =data.frame= into an Org table.
-   
+
 #+BEGIN_SRC R :results output :exports both :session **R**
   df <- data.frame(numbers = 1:5, row.names = LETTERS[1:5])
   df

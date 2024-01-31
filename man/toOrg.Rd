@@ -68,7 +68,7 @@ toOrg(x, ...)
 
 }
 \references{
-  Org mode manual \url{http://orgmode.org/manual/index.html}
+  Org mode manual \url{https://orgmode.org/manual/index.html}
 }
 \author{
   Enrico Schumann
