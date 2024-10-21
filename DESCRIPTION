@@ -1,8 +1,8 @@
 Package: orgutils
 Type: Package
 Title: Helper Functions for Org Files
-Version: 0.5-0
-Date: 2024-01-31
+Version: 0.5-1
+Date: 2024-03-12
 Maintainer: Enrico Schumann <es@enricoschumann.net>
 Authors@R: person("Enrico", "Schumann",
                   role  = c("aut", "cre"),
@@ -14,5 +14,5 @@ Description: Helper functions for Org files (<https://orgmode.org/>):
   Dates/POSIXt) and a function to read Org tables into data frames.
 License: GPL (>=2)
 Imports: textutils
-Suggests: RUnit
+Suggests: RUnit, tinytest
 URL: http://enricoschumann.net/R/packages/orgutils/

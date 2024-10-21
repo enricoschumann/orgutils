@@ -1,3 +1,7 @@
+2024-03-12  Enrico Schumann  <es@enricoschumann.net>
+
+        * DESCRIPTION (Suggests): add tinytest
+
 2024-01-31  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Version): 0.5-0
