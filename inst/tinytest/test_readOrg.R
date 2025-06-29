@@ -1,5 +1,7 @@
-t <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable11.org",
-              table.name = "table$")
+
+org11 <- system.file("unitTests/orgtable11.org", package="orgutils")
+
+t <- readOrg(org11, table.name = "table$")
 expect_equal(t,
             structure(list(C1 = c("w7", "w8"),
                            C2 = c("w9", "w10"),
@@ -10,5 +12,4 @@ expect_equal(t,
 ## t <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable11.org",
 ##               table.name = "table1")
 
-t <- readOrg("~/Packages/orgutils/inst/unitTests/orgtable11.org",
-              table.name = "table1$")
+t <- readOrg(org11, table.name = "table1$")
