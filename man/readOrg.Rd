@@ -11,27 +11,39 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
         encoding = "", strip.white = TRUE,
         stringsAsFactors = FALSE,
         table.name = NULL, text,
-        table.missing = NULL, \dots)
+        table.missing = NULL, \dots,
+        strip.format = TRUE,
+        strip.sep.lines = TRUE,
+        collapse.header = FALSE)
 }
 \arguments{
   \item{file}{
     character
-}
+  }
   \item{header}{
     logical
-}
+  }
   \item{dec}{
     character
-}
-\item{comment.char}{
-  character
-}
+  }
+  \item{comment.char}{
+    character
+  }
   \item{encoding}{
     the encoding of the file
-}
+  }
   \item{strip.white}{
     logical
-}
+  }
+  \item{strip.format}{
+    logical
+  }
+  \item{strip.sep.lines}{
+    logical
+  }
+  \item{collapse.header}{
+    logical
+  }
   \item{stringsAsFactors}{
 
     logical: note that the default \code{FALSE} differs
@@ -65,26 +77,42 @@ readOrg(file, header = TRUE, dec = ".", comment.char = "",
 }
 \details{
 
-  When \code{header} is \code{TRUE}, \code{readOrg} will read the first
-  10 lines of the file (or the table, when \code{table.name} is
-  specified) and try to find an org table header. Formating instructions
-  such as \code{<5>} are discarded. Then the function uses
-  \code{\link{read.csv}} to read the remainder of the file/table.
+Org tables are plain-text tables that look like
+\preformatted{%
+| Column1 | Column2 |
+|---------+---------|
+|       1 |       2 |
+|       3 |       4 |
+}
 
-  When \code{table.name} is specified, the function looks for a line that
-  starts with \code{#+NAME: <table.name>} and reads the table that
-  follows that line.
+A line that starts with \sQuote{\code{|}} (after optional
+whitespace) is considered a table row.  A line that starts
+with \sQuote{\code{|-}} (after optional whitespace) is a
+horizontal rule.  Rows before the first horizontal rule are
+header lines.
 
-  For empty files, \code{readOrg} behaves like \link[utils]{read.csv}:
-  when completely empty, it fails; when headers are found, a zero-row
-  \link{data.frame} is returned.
+When \code{header} is \code{TRUE}, \code{readOrg} will read
+the first \code{max.header} lines of the file (or the table,
+when \code{table.name} is specified) and try to find an org
+table header. Formating instructions such as \code{<5>} are
+discarded. Then the function uses \code{\link{read.csv}} to
+read the remainder of the file/table.
+
+When \code{table.name} is specified, the function looks for
+a line that starts with \code{#+NAME: <table.name>} and
+reads the table that follows that line.
+
+For empty files, \code{readOrg} behaves like
+\link[utils]{read.csv}: when completely empty, it fails;
+when headers are found, a zero-row \link{data.frame} is
+returned.
 
 }
 \value{
   A \code{\link{data.frame}}.
 }
 \references{
-  Org manual \url{https://orgmode.org/manual/index.html}
+  Org manual \url{https://orgmode.org/manual/Tables.html}
 }
 \author{
   Enrico Schumann

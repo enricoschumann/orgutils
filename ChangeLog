@@ -1,3 +1,19 @@
+2025-07-01  Enrico Schumann  <es@enricoschumann.net>
+
+        * R/toOrg.R (readOrg): new argument 'strip.format',
+        'strip.sep.lines' and 'collapse.header'.  More cases
+        are now supported, thanks to Stephen Eglen; see
+        https://github.com/enricoschumann/orgutils/issues/1
+
+        * DESCRIPTION (Imports): no longer import
+        'textutils::trim'; use 'base::trimws' instead
+        (Suggests): no longer suggest 'RUnit'; all tests
+        adapted to tinytest syntax
+
+        * inst/tinytest/*: adapt tests from "RUnit" format
+
+        * inst/unitTests/*: remove directory
+
 2024-03-12  Enrico Schumann  <es@enricoschumann.net>
 
         * DESCRIPTION (Suggests): add tinytest

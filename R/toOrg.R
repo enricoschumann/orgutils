@@ -1,6 +1,8 @@
 toOrg <- function(x, ... )
     UseMethod("toOrg")
 
+
+
 toOrg.data.frame <- function(x, row.names = NULL, ...) {
     is.f <- unlist(lapply(x, function(i) inherits(i, "factor") ||
                                          inherits(i, "Date")))
@@ -53,6 +55,8 @@ toOrg.data.frame <- function(x, row.names = NULL, ...) {
     res
 }
 
+
+
 toOrg.Date <- function(x, inactive = FALSE,...) {
     res <- if (inactive)
                strftime(x, "[%Y-%m-%d %a]")
@@ -61,6 +65,8 @@ toOrg.Date <- function(x, inactive = FALSE,...) {
     class(res) <- c("org", "character")
     res
 }
+
+
 
 toOrg.POSIXt <- function(x, inactive = FALSE,...) {
     res <- if (inactive)
@@ -71,17 +77,26 @@ toOrg.POSIXt <- function(x, inactive = FALSE,...) {
     res
 }
 
+
+
 print.org <- function(x, ...) {
     cat(x, sep = "\n")
     invisible(x)
 }
 
+
+
 readOrg <-function (file, header = TRUE,
-                    dec = ".", comment.char = "",
-                    encoding = "", strip.white = TRUE,
+                    dec = ".",
+                    comment.char = "",
+                    encoding = "",
+                    strip.white = TRUE,
                     stringsAsFactors = FALSE,
                     table.name = NULL, text,
-                    table.missing = NULL, ...) {
+                    table.missing = NULL, ...,
+                    strip.format = TRUE,
+                    strip.sep.lines = TRUE,
+                    collapse.header = FALSE) {
 
     if (missing(file) && !missing(text)) {
         txt <- text
@@ -109,26 +124,62 @@ readOrg <-function (file, header = TRUE,
         end <- grep("^ *[^|]|^\\s*$", txt[start:length(txt)], perl = TRUE)
         if (!length(end))
             end <- length(txt) else end <- start + min(end) - 2L
-        ## end <- min(end[end > start]) - 1L
+        txt <- txt[start:end]
+
+    } else {
+        start <- grep("^\\s*[|]", txt)
+        if (length(start))
+            start <- min(start)
+        end <- grep("^ *[^|]|^\\s*$", txt[start:length(txt)], perl = TRUE)
+        if (!length(end))
+            end <- length(txt) else end <- start + min(end) - 2L
         txt <- txt[start:end]
     }
 
-    sep <- 0
-    if (header) {
-        head <- txt[1:10]
-        line <- min(grep("^ *\\| [^<]", head)) ## ignore format instructions, such as '<10>'
-        sep <- min(grep("^\\s*\\|-", head, perl = TRUE))
-        headers <- trim(strsplit(head[line], "|",
-                                    fixed = TRUE)[[1]][-1])
+    if (strip.sep.lines) {
+        ## find leading sep lines and remove them
+        c1 <- which(!grepl("^\\s*\\|-", txt, perl = TRUE))
+        if (length(c1) && min(c1) > 1)
+            txt <- txt[-seq_len(min(c1) - 1)]
     }
-    if (sep > 0)
-        txt <- txt[-(1:sep)]
+
+    if (!header) {
+        h <- 0
+
+    } else {
+        h <- 1
+        if (collapse.header) {
+            h <- grep("^\\s*\\|-", txt, perl = TRUE)
+            if (length(h))
+                h <- min(h) - 1 else h <- 1
+        }
+        headers <- txt[ seq_len(h)]
+        txt <-     txt[-seq_len(h)    ]
+
+        if (strip.format)
+            headers <- headers[!grepl("^\\s*\\|\\s*<",
+                                      headers, perl = TRUE)]
+
+        headers <- strsplit(headers, "|", fixed = TRUE)
+        headers <- lapply(headers, trimws)
+        headers <- do.call(paste, headers)[-1L]
+    }
+
+
+
 
     ## drop horizontal lines |--------------|
-    txt <- txt[!grepl("^\\s*\\|-", txt, perl = TRUE)]
+    if (strip.sep.lines)
+        txt <- txt[!grepl("^\\s*\\|-", txt, perl = TRUE)]
+
+    ## drop format cookies <lrc> <N> <lrcN>
+    ## FIXME use more specific rx
+    if (strip.format)
+        txt <- txt[!grepl("^\\s*\\|\\s*<", txt, perl = TRUE)]
 
     if (length(txt) && any(txt != "")) {
-        res <- read.csv(textConnection(txt), header = FALSE, sep = "|",
+        res <- read.csv(textConnection(txt),
+                        header = FALSE, sep = "|",
                         dec = dec,
                         stringsAsFactors = stringsAsFactors,
                         fileEncoding = encoding,
@@ -136,6 +187,7 @@ readOrg <-function (file, header = TRUE,
 
         ## drop first and last column
         res <- res[ , c(-1L, -length(res))]
+
     } else {
         res <- vector("list", length = length(headers))
         for (i in seq_along(res))
@@ -143,11 +195,13 @@ readOrg <-function (file, header = TRUE,
         res <- as.data.frame(res, stringsAsFactors = FALSE)
     }
 
-    if (header)
+    if (header && length(headers))
         colnames(res) <- headers
 
     res
 }
+
+
 
 cleanOrg <- function(file,
                      clock = TRUE,
@@ -186,7 +240,6 @@ cleanOrg <- function(file,
         txt[-ij]
 }
 
-file <- c("~/org", "~/Trading/Server/server.org")
 .readOrg <-function (file, header = TRUE,
                      dec = ".", comment.char = "",
                      encoding = "", strip.white = TRUE,
@@ -216,9 +269,9 @@ file <- c("~/org", "~/Trading/Server/server.org")
 
 }
 
-##
-.readOrg1 <- function(file,
-                           TODO.states = c("TODO", "DONE"), ...) {
+.readOrg1 <-
+function(file,
+         TODO.states = c("TODO", "DONE"), ...) {
 
     txt <- readLines(file, ...)
 
@@ -276,9 +329,3 @@ file <- c("~/org", "~/Trading/Server/server.org")
 
     lapply(ans, .entry)
 }
-
-## file <- "~/org/TODO-list.org"
-## ans <- read_TODO_list(file, encoding = "UTF-8")
-## df <- data.frame(created = .Date(unlist(lapply(ans, `[[`, "created"))),
-##                  title = substr(unlist(lapply(ans, `[[`, "title")), 1, 40))
-
