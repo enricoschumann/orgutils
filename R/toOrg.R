@@ -95,7 +95,7 @@ readOrg <-function (file, header = TRUE,
                     table.name = NULL, text,
                     table.missing = NULL, ...,
                     strip.format = TRUE,
-                    strip.sep.lines = TRUE,
+                    strip.horiz.rules = TRUE,
                     collapse.header = FALSE) {
 
     if (missing(file) && !missing(text)) {
@@ -136,46 +136,62 @@ readOrg <-function (file, header = TRUE,
         txt <- txt[start:end]
     }
 
-    if (strip.sep.lines) {
-        ## find leading sep lines and remove them
-        c1 <- which(!grepl("^\\s*\\|-", txt, perl = TRUE))
-        if (length(c1) && min(c1) > 1)
-            txt <- txt[-seq_len(min(c1) - 1)]
+    if (collapse.header)
+        header <- TRUE
+
+    ## DROP FORMAT  <lrc> <N> <lrcN>
+    ## FIXME use more specific rx; drop column groups
+    if (strip.format)
+        txt <- txt[!grepl("^\\s*[|]\\s*<[0-9<>rlc|]*",
+                          txt, perl = TRUE)]
+
+
+    ## HORIZONTAL RULES
+    hr <- grepl("^\\s*\\|-", txt, perl = TRUE)
+
+    ##   !collapse.header && strip.horiz.rules
+    ##   ==> remove all rules
+    if (!collapse.header && strip.horiz.rules)
+        txt <- txt[!hr]
+
+
+    ##    collapse.header && strip.horiz.rules
+    ##   ==> remove only leading rules
+    if ( collapse.header && strip.horiz.rules) {
+        cr <- which(!hr) ## content rows
+        if (!length(cr))
+            txt <- character(0)
+        else if (min(cr) > 1)
+            txt <- txt[-seq_len(min(cr) - 1)]
+    }
+
+    if (!strip.horiz.rules) {
+        txt[hr] <- gsub("[+]", "|", txt[hr])
     }
 
     if (!header) {
         h <- 0
 
     } else {
-        h <- 1
+
         if (collapse.header) {
             h <- grep("^\\s*\\|-", txt, perl = TRUE)
             if (length(h))
                 h <- min(h) - 1 else h <- 1
-        }
+        } else
+            h <- 1
+
         headers <- txt[ seq_len(h)]
         txt <-     txt[-seq_len(h)    ]
-
-        if (strip.format)
-            headers <- headers[!grepl("^\\s*\\|\\s*<",
-                                      headers, perl = TRUE)]
 
         headers <- strsplit(headers, "|", fixed = TRUE)
         headers <- lapply(headers, trimws)
         headers <- do.call(paste, headers)[-1L]
+
+        if (collapse.header && strip.horiz.rules)
+            ## drop remaining horizontal lines
+            txt <- txt[!grepl("^\\s*\\|-", txt, perl = TRUE)]
     }
-
-
-
-
-    ## drop horizontal lines |--------------|
-    if (strip.sep.lines)
-        txt <- txt[!grepl("^\\s*\\|-", txt, perl = TRUE)]
-
-    ## drop format cookies <lrc> <N> <lrcN>
-    ## FIXME use more specific rx
-    if (strip.format)
-        txt <- txt[!grepl("^\\s*\\|\\s*<", txt, perl = TRUE)]
 
     if (length(txt) && any(txt != "")) {
         res <- read.csv(textConnection(txt),
@@ -186,7 +202,7 @@ readOrg <-function (file, header = TRUE,
                         strip.white = strip.white, ...)
 
         ## drop first and last column
-        res <- res[ , c(-1L, -length(res))]
+        res <- res[, c(-1L, -length(res))]
 
     } else {
         res <- vector("list", length = length(headers))

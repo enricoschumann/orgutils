@@ -172,3 +172,73 @@ fn <- "orgtable14.org"
 x <- readOrg(fn, header = TRUE, collapse.header = TRUE)
 expect_equivalent(unlist(x[1, ]), c(1, 2))
 x <- readOrg(fn, header = TRUE, collapse.header = FALSE)
+
+
+
+
+fn <- "orgtable15.org"
+readOrg(fn, table.name = "T1")
+##   A X
+## 1 1 2
+
+readOrg(fn, table.name = "T1", strip.horiz.rules = FALSE)
+
+readOrg(fn, table.name = "T1", strip.horiz.rules = FALSE,
+        header = FALSE)
+
+
+##  #+NAME: T2
+##  |---+---|
+##  |---+---|
+##  |---+---|
+##  |---+---|
+##  |---+---|
+##  |---+---|
+
+x <- readOrg(fn, table.name = "T2")
+## structure(list(), names = character(0),
+##           row.names = integer(0), class = "data.frame")
+expect_equal(nrow(x), 0)
+
+x <- readOrg(fn, table.name = "T2", strip.horiz.rules = FALSE)
+expect_equal(nrow(x), 5) ## one row is used for headers
+
+x <- readOrg(fn, table.name = "T2", strip.horiz.rules = FALSE,
+             header = FALSE)
+expect_equal(nrow(x), 6) ## no row is used for headers
+
+
+
+## #+NAME: T3
+## | 1 | 2 |
+
+x <- readOrg(fn, table.name = "T3", header = TRUE)
+expect_equal(nrow(x), 0)
+
+x <- readOrg(fn, table.name = "T3", header = FALSE)
+expect_equal(nrow(x), 1)
+expect_equal(x[[1]], 1)
+expect_equal(x[[2]], 2)
+
+
+
+## #+NAME: T4
+## | 1 | 2 |
+## |---+---|
+## |---+---|
+## |---+---|
+## |---+---|
+## |---+---|
+x <- readOrg(fn, table.name = "T4")
+expect_equal(nrow(x), 0) ## 1 | 2 is used as headers
+
+x <- readOrg(fn, table.name = "T4", header = FALSE)
+expect_equal(nrow(x), 1)
+expect_equal(x[[1]], 1)
+expect_equal(x[[2]], 2)
+
+x <- readOrg(fn, table.name = "T4",
+             strip.horiz.rules = FALSE)
+expect_equal(colnames(x), c("1", "2"))
+expect_equal(x[[1]], rep("---", 5))
+expect_equal(x[[2]], rep("---", 5))

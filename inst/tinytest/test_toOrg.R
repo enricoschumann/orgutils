@@ -33,7 +33,7 @@ tbl <- structure(c("| row.names | x |",
 expect_equal(tbl, toOrg(data.frame(x = 1:3), TRUE))
 
 
-    ## Date
+## Date
 expect_equal(toOrg(as.Date("2016-1-1")),
              structure(paste0("<2016-01-01 ",
                               format(as.Date("2016-01-01"),

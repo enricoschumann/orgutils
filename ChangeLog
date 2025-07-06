@@ -1,6 +1,16 @@
+2025-07-06  Enrico Schumann  <es@enricoschumann.net>
+
+        * inst/tinytest/*: add more tests
+
+2025-07-02  Enrico Schumann  <es@enricoschumann.net>
+
+        * R/toOrg.R (readOrg): rename 'strip.sep.lines' to
+        'strip.horiz.rules', since the Org manual uses the
+        term "horizontal rules"
+
 2025-07-01  Enrico Schumann  <es@enricoschumann.net>
 
-        * R/toOrg.R (readOrg): new argument 'strip.format',
+        * R/toOrg.R (readOrg): new arguments 'strip.format',
         'strip.sep.lines' and 'collapse.header'.  More cases
         are now supported, thanks to Stephen Eglen; see
         https://github.com/enricoschumann/orgutils/issues/1

@@ -4,6 +4,15 @@
 | x | y |
 | 3 | 4 |
 
+#+begin_src R :results output
+orgutils::readOrg("orgtable12.org", table.name = "tab1")
+#+end_src
+
+#+RESULTS:
+:   x y
+: 1 3 4
+
+
 
 #+name: tab2
 |---+---|
@@ -12,7 +21,56 @@
 | 3 | 4 |
 |---+---|
 
+#+begin_src R :results output
+orgutils::readOrg("orgtable12.org", table.name = "tab2")
+#+end_src
+
+#+RESULTS:
+:   x y
+: 1 3 4
+
+#+begin_src R :results output
+orgutils::readOrg("orgtable12.org", table.name = "tab2",
+                  header = FALSE)
+#+end_src
+
+#+RESULTS:
+:   V2 V3
+: 1  x  y
+: 2  3  4
+
+
+
 #+name: tab3
 | <r10> | <l9> |
 |     x | y    |
 |     3 | 4    |
+
+#+begin_src R :results output
+orgutils::readOrg("orgtable12.org", table.name = "tab3")
+#+end_src
+
+#+RESULTS:
+:   x y
+: 1 3 4
+
+#+begin_src R :results output
+orgutils::readOrg("orgtable12.org", table.name = "tab3",
+                  strip.format = FALSE)
+#+end_src
+
+#+RESULTS:
+:   <r10> <l9>
+: 1     x    y
+: 2     3    4
+
+#+begin_src R :results output
+orgutils::readOrg("orgtable12.org", table.name = "tab3",
+                  strip.format = FALSE, header = FALSE)
+#+end_src
+
+#+RESULTS:
+:      V2   V3
+: 1 <r10> <l9>
+: 2     x    y
+: 3     3    4
