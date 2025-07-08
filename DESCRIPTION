@@ -2,7 +2,7 @@ Package: orgutils
 Type: Package
 Title: Helper Functions for Org Files
 Version: 0.5-1
-Date: 2025-07-06
+Date: 2025-07-08
 Maintainer: Enrico Schumann <es@enricoschumann.net>
 Authors@R: person("Enrico", "Schumann",
                   role  = c("aut", "cre"),

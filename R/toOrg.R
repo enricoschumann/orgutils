@@ -142,7 +142,7 @@ readOrg <-function (file, header = TRUE,
     ## DROP FORMAT  <lrc> <N> <lrcN>
     ## FIXME use more specific rx; drop column groups
     if (strip.format)
-        txt <- txt[!grepl("^\\s*[|]\\s*<[0-9<>rlc|]*",
+        txt <- txt[!grepl("^\\s*[|]\\s*<[0-9lcr]+>[0-9<>rlc| ]*$",
                           txt, perl = TRUE)]
 
 
