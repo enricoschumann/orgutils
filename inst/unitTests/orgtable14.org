@@ -1,7 +1,0 @@
-#+TITLE: Several header lines
-
-| A | X |
-| B | Y |
-| C | Z |
-|---+---|
-| 1 | 2 |
