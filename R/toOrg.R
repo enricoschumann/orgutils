@@ -140,10 +140,12 @@ readOrg <-function (file, header = TRUE,
         header <- TRUE
 
     ## DROP FORMAT  <lrc> <N> <lrcN>
-    ## FIXME use more specific rx; drop column groups
+    ## FIXME use more specific rx
     if (strip.format)
-        txt <- txt[!grepl("^\\s*[|]\\s*<[0-9lcr]+>[0-9<>rlc| ]*$",
-                          txt, perl = TRUE)]
+        txt <- txt[!(grepl("^\\s*[|]\\s*<[0-9lcr]+>[0-9<>rlc| ]*$",
+                           txt, perl = TRUE) |
+                     grepl("^\\s*[|]\\s*/[<>| ]*$",
+                           txt, perl = TRUE))]
 
 
     ## HORIZONTAL RULES
@@ -256,6 +258,8 @@ cleanOrg <- function(file,
         txt[-ij]
 }
 
+
+
 .readOrg <-function (file, header = TRUE,
                      dec = ".", comment.char = "",
                      encoding = "", strip.white = TRUE,
@@ -284,6 +288,8 @@ cleanOrg <- function(file,
     }
 
 }
+
+
 
 .readOrg1 <-
 function(file,

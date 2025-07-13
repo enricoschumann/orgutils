@@ -1,3 +1,8 @@
+2025-07-13  Enrico Schumann  <es@enricoschumann.net>
+
+        * R/toOrg.R (readOrg): add regex for column-group
+        lines
+
 2025-07-08  Enrico Schumann  <es@enricoschumann.net>
 
         * R/toOrg.R (readOrg): make regex for format lines

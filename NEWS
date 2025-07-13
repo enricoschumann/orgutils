@@ -1,4 +1,4 @@
-v0.5-1  (2025-07-06; not yet released)
+v0.5-1  (2025-07-13; not yet released)
 
   o readOrg: new arguments 'strip.format', 'strip.horiz.rules'
     and 'collapse.header'.  More variations of table headers
