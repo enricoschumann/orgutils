@@ -1,10 +1,13 @@
-v0.5-1  (2025-07-13; not yet released)
+v0.5-1  (2025-07-29)
 
   o readOrg: new arguments 'strip.format', 'strip.horiz.rules'
     and 'collapse.header'.  More variations of table headers
     (such as with/without separation lines) are now
     supported, thanks to Stephen Eglen's report at
     https://github.com/enricoschumann/orgutils/issues/1
+
+  o toOrg: in data.frames, 'POSIXt' columns are now
+    converted to character
 
 v0.5-0  (2024-01-31)
 

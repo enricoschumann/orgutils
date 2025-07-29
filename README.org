@@ -1,7 +1,7 @@
 #+TITLE: Org Utils
 #+AUTHOR: Enrico Schumann
 
-R tools for handling Org (http://orgmode.org/) files
+R tools for handling Org (https://orgmode.org/) files
 and markup: a generic function =toOrg= for transforming
 R objects into Org markup (currently with methods for
 dataframes, dates and times) and a function for reading
@@ -12,7 +12,7 @@ tables from Org files into data.frames.
 To install the package from a running R session, type:
 #+BEGIN_SRC R :eval never
   install.packages('orgutils', type = 'source',
-                   repos = c('http://enricoschumann.net/R',
+                   repos = c('https://enricoschumann.net/R',
                              getOption('repos')))
 #+END_SRC
 
@@ -62,7 +62,7 @@ and times (classes =POSIXct= and =POSIXlt=).
 #+RESULTS:
 : <2016-01-01 Fri>
 
-For [[http://orgmode.org/manual/Creating-timestamps.html][inactive timestamps]] set the argument =inactive= to =TRUE=.
+For [[https://orgmode.org/manual/Creating-timestamps.html][inactive timestamps]] set the argument =inactive= to =TRUE=.
 
 #+BEGIN_SRC R :results output :exports both :session **R**
   toOrg(as.POSIXct("2016-1-1 10:00:00"), inactive = TRUE)

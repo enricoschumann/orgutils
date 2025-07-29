@@ -5,7 +5,8 @@ toOrg <- function(x, ... )
 
 toOrg.data.frame <- function(x, row.names = NULL, ...) {
     is.f <- unlist(lapply(x, function(i) inherits(i, "factor") ||
-                                         inherits(i, "Date")))
+                                         inherits(i, "Date") ||
+                                         inherits(i, "POSIXt")))
     if (any(is.f)) {
         is.f <- which(is.f)
         for (i in seq_along(is.f))

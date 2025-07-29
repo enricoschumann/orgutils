@@ -124,3 +124,18 @@ orgutils::readOrg("orgtable15.org", table.name = "Groups2")
 #+RESULTS:
 : [1] N          N^2        N^3        N^4        sqrt(n)    sqrt[4](N)
 : <0 rows> (or 0-length row.names)
+
+
+* POSIXt
+
+
+#+begin_src R :results output
+orgutils::toOrg(data.frame(T = Sys.time()))
+#+end_src
+
+#+RESULTS:
+: | T                          |
+: |----------------------------|
+: | 2025-07-29 17:14:11.183724 |
+
+#+end_src
