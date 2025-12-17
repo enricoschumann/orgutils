@@ -1,8 +1,8 @@
 Package: orgutils
 Type: Package
 Title: Helper Functions for Org Files
-Version: 0.5-1
-Date: 2025-07-29
+Version: 0.5-2
+Date: 2025-12-15
 Maintainer: Enrico Schumann <es@enricoschumann.net>
 Authors@R: person("Enrico", "Schumann",
                   role  = c("aut", "cre"),
@@ -15,4 +15,5 @@ Description: Helper functions for Org files (<https://orgmode.org/>):
 License: GPL (>=2)
 Depends: R (>= 3.2)
 Suggests: tinytest
-URL: https://enricoschumann.net/R/packages/orgutils/
+URL: https://enricoschumann.net/R/packages/orgutils/ ,
+     https://sr.ht/~enricoschumann/orgutils/
